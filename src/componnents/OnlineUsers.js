@@ -13,7 +13,7 @@ export default function OnlineUsers() {
     <div className="user-list">
       <h2>All Users</h2>
       {isPending && <div>Loading users...</div>}
-      {error && <div>{error}</div>}
+      {error && <div>{error}</div>}                                                                                  
       {documents && documents.map(user => (
         <div key={user.id} className="user-list-item">
           {user.online && <span className="online-user"></span>}

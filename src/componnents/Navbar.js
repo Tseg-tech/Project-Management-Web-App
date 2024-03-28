@@ -25,7 +25,7 @@ export default function Navbar() {
           </>
         )}
 
-        {user && (
+       {user && (
           <li>
             {!isPending && <button className="btn" onClick={logout}>Logout</button>}
             {isPending && <button className="btn" disabled>Logging out...</button>}
