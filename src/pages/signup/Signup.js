@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useSignup } from '../../hooks/useSignup'
-
+import { Box } from '@chakra-ui/react';
 // styles
-import './Signup.css'
+//import './Signup.css'
 
 export default function Signup() {
   const [email, setEmail] = useState('')
@@ -41,6 +41,18 @@ export default function Signup() {
   }
 
   return (
+    <Box
+      maxW="400px"
+      mx="auto"
+      mt={12}
+      p={6}
+      bg="rgba(255, 255, 255, 0.1)"  // light transparent white
+      backdropFilter="blur(10px)"    // adds blur effect (like glass)
+      borderWidth="1px"
+      borderColor="gray.200"
+      borderRadius="md"
+      boxShadow="md"
+    >
     <form onSubmit={handleSubmit} className="auth-form">
       <h2>Sign Up</h2>
       <label>
@@ -79,9 +91,11 @@ export default function Signup() {
         />
         {thumbnailError && <div className="error">{thumbnailError}</div>}
       </label>
+      
       {!isPending && <button className="btn">Sign up</button>}
       {isPending && <button className="btn" disabled>loading</button>}
       {error && <div className="error">{error}</div>}
     </form>
+    </Box>
   )
 }
