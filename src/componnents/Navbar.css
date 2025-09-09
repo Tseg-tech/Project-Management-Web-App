@@ -18,7 +18,7 @@
     align-items: center;
     margin-right: auto;
   }
-  .navbar .logo img {
+  .navbar .logo h3 {
     margin-right: 10px;
     filter: invert(25%);
     width: 36px;

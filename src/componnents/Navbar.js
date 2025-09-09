@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom'
 import { useLogout } from '../hooks/useLogout'
 import { useAuthContext } from '../hooks/useAuthContext'
 
-// styles & images
+// styles & images  <img src={Temple} alt="dojo logo" />
 import './Navbar.css'
-import Temple from '../assets/temple.svg'
+//import Temple from '../assets/temple.svg'
+import { SiAnalogue } from "react-icons/si"
 
 export default function Navbar() {
   const { logout, isPending } = useLogout()
@@ -16,8 +17,8 @@ export default function Navbar() {
         {!user && (
           <>
             <li className="logo">
-              <img src={Temple} alt="dojo logo" />
-              <span>Manage Your Project</span>
+              <h3><SiAnalogue color = "red" /> </h3>
+              <span> Manage Your Project</span>
             </li>
 
             <li><Link to="/login">Login</Link></li>
