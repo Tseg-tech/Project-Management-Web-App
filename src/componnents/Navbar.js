@@ -17,7 +17,7 @@ export default function Navbar() {
           <>
             <li className="logo">
               <img src={Temple} alt="dojo logo" />
-              <span>The Dojo</span>
+              <span>Manage Your Project</span>
             </li>
 
             <li><Link to="/login">Login</Link></li>
