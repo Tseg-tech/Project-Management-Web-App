@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLogin } from '../../hooks/useLogin'
+
 import {
   Box,
   Button,
@@ -12,7 +13,9 @@ import {
   Spinner,
   Alert,
   AlertIcon,
+  InputGroup,
 } from '@chakra-ui/react';
+import { MdOutlineMail } from "react-icons/md";
 // styles
 //import './Login.css'
 
@@ -39,7 +42,7 @@ export default function Login() {
       borderRadius="md"
       boxShadow="md"
       //bgImage="url('/tseg.jpg')"
-      bgSize= "100% 100%"
+      bgSize="100% 100%"
       bgPosition="center"
       bgRepeat="no-repeat"
     >
@@ -51,11 +54,14 @@ export default function Login() {
 
           <FormControl id="email" isRequired>
             <FormLabel>Email</FormLabel>
-            <Input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <InputGroup startElement={<MdOutlineMail />}>
+              <Input
+                type="email"
+                placeholder="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </InputGroup>
           </FormControl>
 
           <FormControl id="password" isRequired>

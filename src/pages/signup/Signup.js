@@ -1,6 +1,20 @@
 import { useState } from 'react'
 import { useSignup } from '../../hooks/useSignup'
-import { Box, Button, HStack } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Heading,
+  Text,
+  VStack,
+  Spinner,
+  Alert,
+  AlertIcon,
+  InputGroup,
+} from '@chakra-ui/react';
+import { MdOutlineMail } from "react-icons/md";
 // styles
 //import './Signup.css'
 
@@ -53,57 +67,60 @@ export default function Signup() {
       borderRadius="md"
       boxShadow="md"
     >
-      <form onSubmit={handleSubmit} className="auth-form">
-        <h2>Sign Up</h2>
-        <label>
-          <span>email:</span>
-          <input
-            required
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
-        </label>
-        <label>
-          <span>password:</span>
-          <input
-            required
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
-        </label>
-        <label>
-          <span>display name:</span>
-          <input
-            required
-            type="text"
-            onChange={(e) => setDisplayName(e.target.value)}
-            value={displayName}
-          />
-        </label>
-        <label>
-          <span>Profile thumbnail:</span>
-          <input
-            required
-            type="file"
-            onChange={handleFileChange}
-          />
-          {thumbnailError && <div className="error">{thumbnailError}</div>}
-        </label>
+      <form onSubmit={handleSubmit} >
+        <VStack spacing={5}>
+          <Heading size="lg" textAlign="center" >Sign Up</Heading>
+          <FormControl id="email" isRequired>
+            <FormLabel>Email</FormLabel>
+            <InputGroup startElement={<MdOutlineMail />}>
+              <Input
+                type="email"
+                placeholder="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </InputGroup>
+          </FormControl>
+            <FormControl id="password" isRequired>
+            <FormLabel>Password</FormLabel>
+            <Input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </FormControl>
+          
+            <FormControl id="text" isRequired>
+            <FormLabel>Display Name</FormLabel>
+            <Input
+              type="text"
+              onChange={(e) => setDisplayName(e.target.value)}
+              value={displayName}
+            />
+          </FormControl>
 
-        <HStack wrap="wrap" gap="6"><Button
-          type="submit"
-          colorScheme="blue"
-          width="full" 
-          isLoading={isPending}
-          loadingText="Loading"
+          <label>
+            <span>Profile Thumbnail:</span>
+            <input
+              required
+              type="file"
+              onChange={handleFileChange}
+            />
+            {thumbnailError && <div className="error">{thumbnailError}</div>}
+          </label>
+
+          <Button
+            type="submit"
+            colorScheme="blue"
+            width="full"
+            isLoading={isPending}
+            loadingText="Loading"
           >
-          Sign up
-        </Button>
-        </HStack>
-        
-        {error && <div className="error">{error}</div>}
+            Sign up
+          </Button>
+
+          {error && <div className="error">{error}</div>}
+        </VStack>
       </form>
     </Box>
   )

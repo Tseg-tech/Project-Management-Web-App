@@ -18,7 +18,7 @@ export default function Navbar() {
           <>
             <li className="logo">
               <h3><SiAnalogue color = "red" /> </h3>
-              <span> Manage Your Project</span>
+              <span> DMP</span>
             </li>
 
             <li><Link to="/login">Login</Link></li>
