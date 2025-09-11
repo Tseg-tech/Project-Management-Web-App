@@ -15,6 +15,7 @@ import {
   InputGroup,
 } from '@chakra-ui/react';
 import { MdOutlineMail } from "react-icons/md";
+import { HiUpload } from "react-icons/hi"
 // styles
 //import './Signup.css'
 
@@ -44,8 +45,8 @@ export default function Signup() {
       setThumbnailError('Selected file must be an image')
       return
     }
-    if (selected.size > 100000) {
-      setThumbnailError('Image file size must be less than 100kb')
+    if (selected.size > 1000000) {
+      setThumbnailError('Image file size must be less than 1000kb')
       return
     }
 
@@ -81,7 +82,7 @@ export default function Signup() {
               />
             </InputGroup>
           </FormControl>
-            <FormControl id="password" isRequired>
+          <FormControl id="password" isRequired>
             <FormLabel>Password</FormLabel>
             <Input
               type="password"
@@ -89,8 +90,8 @@ export default function Signup() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </FormControl>
-          
-            <FormControl id="text" isRequired>
+
+          <FormControl id="text" isRequired>
             <FormLabel>Display Name</FormLabel>
             <Input
               type="text"
@@ -99,15 +100,16 @@ export default function Signup() {
             />
           </FormControl>
 
-          <label>
+          <FormControl id="file" isRequired>
             <span>Profile Thumbnail:</span>
-            <input
-              required
-              type="file"
-              onChange={handleFileChange}
-            />
+            <InputGroup startElement={<HiUpload />}>
+              <Input
+                type="file"
+                onChange={handleFileChange}
+              />
+            </InputGroup>
             {thumbnailError && <div className="error">{thumbnailError}</div>}
-          </label>
+          </FormControl>
 
           <Button
             type="submit"
