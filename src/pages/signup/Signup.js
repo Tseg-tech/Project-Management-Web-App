@@ -113,7 +113,7 @@ export default function Signup() {
 
           <Button
             type="submit"
-            colorScheme="blue"
+            colorScheme="teal"
             width="full"
             isLoading={isPending}
             loadingText="Loading"

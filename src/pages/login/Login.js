@@ -75,7 +75,7 @@ export default function Login() {
 
           <Button
             type="submit"
-            colorScheme="blue"
+            colorScheme="teal"
             width="full"
             isLoading={isPending}
             loadingText="Loading"
