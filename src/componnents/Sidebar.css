@@ -48,3 +48,12 @@
   .sidebar .links .active img {
     filter: invert(40%);
   }
+  .active-link {
+  color: #38B2AC;
+  font-weight: bold;
+}
+
+.inactive-link {
+  color: #fff;
+  font-weight: normal;
+}

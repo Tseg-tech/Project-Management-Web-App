@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { useAuthContext } from './hooks/useAuthContext'
-import { Box } from '@chakra-ui/react';
+import { Box , Text, Button} from '@chakra-ui/react';
 
 // styles
 import './App.css'
