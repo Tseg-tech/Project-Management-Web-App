@@ -8,12 +8,14 @@ import {
   FormLabel,
   Input,
   Heading,
-  Text,
   VStack,
   Spinner,
   Alert,
   AlertIcon,
-  InputGroup,
+  InputGroup,Popover,
+   Portal, 
+   Text, 
+   Theme,
 } from '@chakra-ui/react';
 import { MdOutlineMail } from "react-icons/md";
 // styles
@@ -30,6 +32,7 @@ export default function Login() {
   }
 
   return (
+    
     <Box
       maxW="400px"
       mx="auto"

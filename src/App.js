@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { useAuthContext } from './hooks/useAuthContext'
 import { Box } from '@chakra-ui/react';
+
 // styles
 import './App.css'
 
@@ -19,6 +20,7 @@ function App() {
 
 
   return (
+    
     <Box
       minH="100vh"
       bgImage="url('/github.png')"

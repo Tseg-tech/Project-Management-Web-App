@@ -18,9 +18,11 @@ import {
   Group,
   Heading,
   List,
-  ListItem
+  ListItem,
+ 
 
 } from '@chakra-ui/react';
+
 //import { DecorativeBox } from "compositions/lib/decorative-box"
 
 import { SiAnalogue } from "react-icons/si"
@@ -28,10 +30,11 @@ import { SiAnalogue } from "react-icons/si"
 export default function Navbar() {
   const { logout, isPending } = useLogout()
   const { user } = useAuthContext()
-
+  
   return (
 
     <Box as="nav">
+      
       <List >
         {!user && (
           <>
@@ -67,22 +70,30 @@ export default function Navbar() {
         {user && (
           <Flex>
             <Box p="4" ></Box>
-            <Spacer/>
-            <Box p="4">
-          <ListItem>
-            <Button
-              colorScheme="teal"
-              onClick={logout}
-              isLoading={isPending}
-              loadingText="Logging out..."
-              //isDisabled={isPending}
-              //{isPending ? "Logging out..." : "Logout"}
-            >
-              {isPending ? "Logging out..." : "Logout"}
-              
-            </Button>
-          </ListItem>
-          </Box>
+            <Spacer />
+            <Box p="4" >
+              <ListItem>
+                <HStack>
+                <Button
+                  colorScheme="teal"
+                  onClick={logout}
+                  isLoading={isPending}
+                  loadingText="Logging out..."
+                //isDisabled={isPending}
+                //{isPending ? "Logging out..." : "Logout"}
+                >
+                  {isPending ? "Logging out..." : "Logout"}
+
+                </Button>
+                <Box
+                  colorPalette="blue"
+                  bg={{ base: "colorPalette.600", _dark: "colorPalette.400" }}
+                >
+                  Hello World
+                </Box>
+                </HStack>
+              </ListItem>
+            </Box>
           </Flex>
 
         )}
