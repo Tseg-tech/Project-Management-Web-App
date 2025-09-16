@@ -25,7 +25,7 @@ function App() {
       minH="100vh"
       bgImage="url('/github.png')"
       bgSize= "auto"
-      bgPosition="center"
+      //bgPosition="center"
       bgRepeat="repeat"
     >
       <div className="App">

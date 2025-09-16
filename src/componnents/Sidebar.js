@@ -41,10 +41,10 @@ export default function Sidebar() {
           borderBottom="1px solid rgba(255, 255, 255, 0.2)"
         >
           <Avatar src={user.photoURL} />
-          <p>{user.displayName}</p>
+          <Text>{user.displayName}</Text>
         </Box>
-        <Box
-
+        <Box as="nav"
+         
           marginTop="80px"
           marginLeft="20px"
         >
@@ -69,7 +69,7 @@ export default function Sidebar() {
                       img {
                         filter: invert(100%);
                       }
-                      .active-link & img {
+                      &.active-link & img {
                         filter: invert(40%);
                       }
                       &.active-link {
@@ -83,7 +83,7 @@ export default function Sidebar() {
                     src={DashboardIcon}
                     alt="dashboard icon"
                   />
-                  <Text color="inherit" fontWeight="inherit">Dashboard</Text>
+                  <Text color="inherit" fontWeight="inherit" >Dashboard</Text>
                 </Flex>
               </NavLink>
             </ListItem>
