@@ -3,7 +3,7 @@ import Avatar from '../componnents/Avatar'
 
 // styles
 //import './ProjectList.css'
-import { Box, Heading, Text,UnorderedList, ListItem } from '@chakra-ui/react'
+import { Box, Heading, Text, UnorderedList, ListItem } from '@chakra-ui/react'
 
 export default function ProjectList({ projects }) {
   console.log(projects)
@@ -26,16 +26,18 @@ export default function ProjectList({ projects }) {
           color="inherit"
         >
           <Heading fontSize="0.9em" color="var(--heading-color)">{project.name}</Heading>
-          <Text color="var(--text-color)" fontSize="0.9em" >Due by {project.dueDate.toDate().toDateString()}</Text >
+          <Text color="var(--text-color)" fontSize="0.9em" >
+            Due by {project.dueDate.toDate().toDateString()}
+          </Text >
           <Box
             mt="20px"
             pt="10px"
             borderTop="1px solid #eee"
           >
-            <Text color="var(--text-color)" fontSize="0.9em"><strong>Assigned to:</strong></Text >
-            <UnorderedList 
-            my="10px"       // margin-top and margin-bottom 10px
-            display="flex"
+            <Text color="var(--text-color)" fontSize="0.9em"><Text as="strong" fontWeight="bold">Assigned to:</Text ></Text >
+            <UnorderedList
+              my="10px"       // margin-top and margin-bottom 10px
+              display="flex"
             >
               {project.assignedUsersList.map(user => (
                 <ListItem key={user.photoURL} mr="10px">
