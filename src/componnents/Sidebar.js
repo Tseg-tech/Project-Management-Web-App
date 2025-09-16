@@ -8,7 +8,8 @@ import Avatar from "./Avatar"
 //import "./Sidebar.css"
 import {
   Box,
-  UnorderedList, ListItem, Flex, Text
+  UnorderedList, ListItem, Flex, Text, Image,
+  Img,
 } from '@chakra-ui/react';
 //import { MdOutlineMail } from "react-icons/md";
 import DashboardIcon from '../assets/dashboard_icon.svg'
@@ -26,53 +27,94 @@ export default function Sidebar() {
       boxSizing="border-box"
       position="relative"
       color="white"
-      
+
     >
-      <Box position="fixed" width="inherit">
+      <Box position="fixed" width="inherit" >
         <Box
           fontWeight="bold"
           textAlign="center"
           letterSpacing="1px"
           px="30px"
           py="40px"
-          borderBottom="1px solid rgba(255, 255, 255, 0.2)">
+          borderBottom="1px solid rgba(255, 255, 255, 0.2)"
+        >
           <Avatar src={user.photoURL} />
           <p>{user.displayName}</p>
         </Box>
         <Box
-          width="300px"
-          minH="100vh"
-          bg="#1A1A1D"
-          color="white"
-          p={4}
-           
+
+          marginTop="80px"
+          marginLeft="20px"
         >
-          <UnorderedList mt="80px" ml="20px" listStyleType="none" m={0} p={0}>
-            <ListItem>
+          <UnorderedList
+            listStyleType="none"
+            m={0} p={0}>
+            <ListItem
+              marginLeft="20px"
+            >
               <NavLink
+
                 to="/"
+                style={{ textDecoration: "none" }}
                 className={({ isActive }) =>
                   isActive ? "active-link" : "inactive-link"
                 }
-                style={{ textDecoration: "none" }}
+
               >
-                <Flex align="center" gap={2}>
-                  <img src={DashboardIcon} alt="dashboard icon" />
+
+                <Flex align="center" gap={2}
+                  sx={{
+                    img: {
+                      filter: "invert(100%)",
+                    },
+                    ".active-link & img": {
+                      filter: "invert(40%)",
+                    },
+                    ".active-link": {
+                      color: "#555",
+                      background: "#86c232",
+                      borderRadius: "20px 0 0 20px",
+                    },
+                  }}
+                >
+                  <Image
+                    src={DashboardIcon}
+                    alt="dashboard icon"
+                  />
                   <Text color="inherit" fontWeight="inherit">Dashboard</Text>
                 </Flex>
               </NavLink>
             </ListItem>
 
-            <ListItem>
+            <ListItem
+              marginTop="10px"
+              marginLeft="20px"
+            >
               <NavLink
+
                 to="/create"
+                style={{ textDecoration: "none" }}
                 className={({ isActive }) =>
                   isActive ? "active-link" : "inactive-link"
                 }
-                style={{ textDecoration: "none" }}
+
               >
-                <Flex align="center" gap={2}>
-                  <img src={AddIcon} alt="add project icon" />
+                <Flex align="center" gap={2}
+                  sx={{
+                    img: {
+                      filter: "invert(100%)",
+                    },
+                    ".active-link & img": {
+                      filter: "invert(40%)",
+                    },
+                      ".active-link": {
+                      color: "#555",
+                      background: "#86c232",
+                      borderRadius: "20px 0 0 20px",
+                    },
+                  }}
+                >
+                  <Img src={AddIcon} alt="add project icon" />
                   <Text color="inherit" fontWeight="inherit">New Project</Text>
                 </Flex>
               </NavLink>
