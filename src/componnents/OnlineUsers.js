@@ -6,7 +6,7 @@ import {
   Spinner,
   IconButton,
 } from '@chakra-ui/react';
-//import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+
 import { useCollection } from '../hooks/useCollection';
 import Avatar from './Avatar';
 
@@ -90,5 +90,5 @@ export default function OnlineUsers() {
         </Box>
       )}
     </>
-  );
+  )
 }
