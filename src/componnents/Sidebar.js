@@ -11,6 +11,8 @@ import {
   UnorderedList, ListItem, Flex, Text, Image,
   Img,
 } from '@chakra-ui/react';
+import { css } from '@emotion/react'
+
 //import { MdOutlineMail } from "react-icons/md";
 import DashboardIcon from '../assets/dashboard_icon.svg'
 import AddIcon from '../assets/add_icon.svg'
@@ -63,19 +65,19 @@ export default function Sidebar() {
               >
 
                 <Flex align="center" gap={2}
-                  sx={{
-                    img: {
-                      filter: "invert(100%)",
-                    },
-                    ".active-link & img": {
-                      filter: "invert(40%)",
-                    },
-                    ".active-link": {
-                      color: "#555",
-                      background: "#86c232",
-                      borderRadius: "20px 0 0 20px",
-                    },
-                  }}
+                  css={css`
+                      img {
+                        filter: invert(100%);
+                      }
+                      .active-link & img {
+                        filter: invert(40%);
+                      }
+                      &.active-link {
+                        color: #555;
+                        background: #86c232;
+                        border-radius: 20px 0 0 20px;
+                      }
+                    `}
                 >
                   <Image
                     src={DashboardIcon}
@@ -100,19 +102,19 @@ export default function Sidebar() {
 
               >
                 <Flex align="center" gap={2}
-                  sx={{
-                    img: {
-                      filter: "invert(100%)",
-                    },
-                    ".active-link & img": {
-                      filter: "invert(40%)",
-                    },
-                      ".active-link": {
-                      color: "#555",
-                      background: "#86c232",
-                      borderRadius: "20px 0 0 20px",
-                    },
-                  }}
+                  css={css`
+                          img {
+                            filter: invert(100%);
+                          }
+                          &.active-link img {
+                            filter: invert(40%);
+                          }
+                          &.active-link {
+                            color: #555;
+                            background: #86c232;
+                            border-radius: 20px 0 0 20px;
+                          }
+                        `}
                 >
                   <Img src={AddIcon} alt="add project icon" />
                   <Text color="inherit" fontWeight="inherit">New Project</Text>
