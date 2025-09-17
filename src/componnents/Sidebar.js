@@ -23,46 +23,58 @@ export default function Sidebar() {
   return (
     <Box
       width="300px"
+      //w="fit-content"
       minWidth="300px"
-      bg="#1A1A1D"
+      bg="#f59e9eff"
       minHeight="100vh"
       boxSizing="border-box"
       position="relative"
-      color="white"
+      color="#0f0e0eff"
+
 
     >
       <Box position="fixed" width="inherit" >
         <Box
+          //w="fit-content"
           fontWeight="bold"
           textAlign="center"
           letterSpacing="1px"
+          bg="#ede3e3ff"
           px="30px"
           py="40px"
           borderBottom="1px solid rgba(255, 255, 255, 0.2)"
+          borderColor="#131313ff"
         >
           <Avatar src={user.photoURL} />
           <Text>{user.displayName}</Text>
         </Box>
         <Box as="nav"
-         
+          //bg="#4c0606ff"
           marginTop="80px"
           marginLeft="20px"
+
+        // w="fit-content"
         >
           <UnorderedList
             listStyleType="none"
             m={0} p={0}>
+
             <ListItem
+
               marginLeft="20px"
             >
               <NavLink
 
                 to="/"
-                style={{ textDecoration: "none" }}
+                style={({ isActive }) => ({
+                  color: isActive ? '#4c0606ff' : '#f59e9eff',
+                  textDecoration: "none"
+                })}
                 className={({ isActive }) =>
                   isActive ? "active-link" : "inactive-link"
                 }
-
               >
+              
 
                 <Flex align="center" gap={2}
                   css={css`
@@ -83,7 +95,7 @@ export default function Sidebar() {
                     src={DashboardIcon}
                     alt="dashboard icon"
                   />
-                  <Text color="inherit" fontWeight="inherit" >Dashboard</Text>
+                  <Text color="inherit" fontWeight="bold" >Dashboard</Text>
                 </Flex>
               </NavLink>
             </ListItem>
@@ -117,7 +129,7 @@ export default function Sidebar() {
                         `}
                 >
                   <Img src={AddIcon} alt="add project icon" />
-                  <Text color="inherit" fontWeight="inherit">New Project</Text>
+                  <Text color="inherit" fontWeight="bold">New Project</Text>
                 </Flex>
               </NavLink>
             </ListItem>

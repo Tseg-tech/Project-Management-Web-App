@@ -7,7 +7,19 @@ import { useHistory } from 'react-router'
 import Select from 'react-select'
 
 // styles
-import './Create.css'
+//import './Create.css'
+
+import {
+  Box,
+  UnorderedList, ListItem, Flex, Text, Image,
+  Img,
+  Input,
+  Heading,
+  FormControl,
+  Textarea,
+  Button,
+  Spacer,
+} from '@chakra-ui/react';
 
 const categories = [
   { value: 'development', label: 'Development' },
@@ -33,9 +45,9 @@ export default function Create() {
 
   // create user values for react-select
   useEffect(() => {
-    if(documents) {
+    if (documents) {
       setUsers(documents.map(user => {
-        return { value: {...user, id: user.id}, label: user.displayName }
+        return { value: { ...user, id: user.id }, label: user.displayName }
       }))
     }
   }, [documents])
@@ -54,14 +66,14 @@ export default function Create() {
     }
 
     const assignedUsersList = assignedUsers.map(u => {
-      return { 
-        displayName: u.value.displayName, 
+      return {
+        displayName: u.value.displayName,
         photoURL: u.value.photoURL,
         id: u.value.id
       }
     })
-    const createdBy = { 
-      displayName: user.displayName, 
+    const createdBy = {
+      displayName: user.displayName,
       photoURL: user.photoURL,
       id: user.uid
     }
@@ -69,7 +81,7 @@ export default function Create() {
     const project = {
       name,
       details,
-      assignedUsersList, 
+      assignedUsersList,
       createdBy,
       category: category.value,
       dueDate: timestamp.fromDate(new Date(dueDate)),
@@ -83,55 +95,99 @@ export default function Create() {
   }
 
   return (
-    <div className="create-form">
-      <h2 className="page-title">Create a new Project</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <span>Project name:</span>
-          <input
-            required 
-            type="text" 
+    <Box maxW="600px" my="110px"  >
+      <Heading
+        fontFamily="inherit"
+        fontWeight="bold"
+        fontSize="1.2em"
+        my="20px" 
+        mx="auto"
+        
+       // alignItems="center"
+      >New Project</Heading>
+      <Box bg="#f59e9eff"  borderRadius="8px" mt="10px" mx="auto">
+      <Box as="form" onSubmit={handleSubmit}
+       maxW="500px" 
+       borderRadius="4px"
+       mx="auto"
+       
+      >
+        <FormControl
+          borderColor="#131313ff"
+          borderRadius="md"
+        >
+          <Text as="span">Project name:</Text>
+          <Input
+            isRequired
+            type="text"
             onChange={(e) => setName(e.target.value)}
             value={name}
           />
-        </label>
-        <label>
-          <span>Project Details:</span>
-          <textarea 
-            required
+        </FormControl  >
+        <Spacer my="20px" mx="auto" />
+        <FormControl
+          borderColor="#131313ff"
+          borderRadius="md"
+        >
+          <Text as="span">Project Details:</Text>
+          <Textarea 
+            isRequired
             onChange={(e) => setDetails(e.target.value)}
-            value={details} 
-          ></textarea>
-        </label>
-        <label>
-          <span>Set due date:</span>
-          <input
-            required 
-            type="date" 
-            onChange={(e) => setDueDate(e.target.value)} 
+            value={details}
+          ></Textarea>
+        </FormControl>
+        <Spacer my="20px" mx="auto" />
+        <FormControl
+          borderColor="#131313ff"
+          borderRadius="md"
+        >
+          <Text as="span">Set due date:</Text>
+          <Input
+            isRequired
+            type="date"
+            onChange={(e) => setDueDate(e.target.value)}
             value={dueDate}
           />
-        </label>
-        <label>
-          <span>Project category:</span>
-          <Select
+        </FormControl>
+        <Spacer my="20px" mx="auto" />
+        
+        <FormControl
+          borderColor="#131313ff"
+          borderRadius="md"
+        >
+          <Text as="span" >Project category:</Text>
+          <Select 
+            styles={{ control: (styles) => ({ ...styles, borderColor: '#131313ff' }) }}
             onChange={(option) => setCategory(option)}
             options={categories}
           />
-        </label>
-        <label>
-          <span>Assign to:</span>
-          <Select
+        </FormControl>
+        
+        <Spacer my="20px" mx="auto" />
+
+        <FormControl
+          borderColor="#131313ff"
+          borderRadius="md"
+        >
+          <Text as="span">Assign to:</Text>
+          <Select 
+            styles={{ control: (styles) => ({ ...styles, borderColor: '#131313ff' }) }}
             onChange={(option) => setAssignedUsers(option)}
             options={users}
             isMulti
           />
-        </label>
+        </FormControl>
 
-        <button className="btn">Add Project</button>
+        <Spacer my="10px" mx="auto" />
 
-        {formError && <p className="error">{formError}</p>}
-      </form>
-    </div>
+        <Button colorScheme="teal" size="md" variant="solid" my="10px" mx="auto">
+          Add Project
+        </Button>
+        
+        {formError && <Text className="error">{formError}</Text>}
+        
+      </Box>
+      </Box>
+    </Box>
   )
 }
