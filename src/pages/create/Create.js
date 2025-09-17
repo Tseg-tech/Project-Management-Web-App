@@ -100,93 +100,99 @@ export default function Create() {
         fontFamily="inherit"
         fontWeight="bold"
         fontSize="1.2em"
-        my="20px" 
+        my="20px"
         mx="auto"
-        
-       // alignItems="center"
+
+      // alignItems="center"
       >New Project</Heading>
-      <Box bg="#f59e9eff"  borderRadius="8px" mt="10px" mx="auto">
-      <Box as="form" onSubmit={handleSubmit}
-       maxW="500px" 
-       borderRadius="4px"
-       mx="auto"
-       
-      >
-        <FormControl
-          borderColor="#131313ff"
-          borderRadius="md"
-        >
-          <Text as="span">Project name:</Text>
-          <Input
-            isRequired
-            type="text"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          />
-        </FormControl  >
-        <Spacer my="20px" mx="auto" />
-        <FormControl
-          borderColor="#131313ff"
-          borderRadius="md"
-        >
-          <Text as="span">Project Details:</Text>
-          <Textarea 
-            isRequired
-            onChange={(e) => setDetails(e.target.value)}
-            value={details}
-          ></Textarea>
-        </FormControl>
-        <Spacer my="20px" mx="auto" />
-        <FormControl
-          borderColor="#131313ff"
-          borderRadius="md"
-        >
-          <Text as="span">Set due date:</Text>
-          <Input
-            isRequired
-            type="date"
-            onChange={(e) => setDueDate(e.target.value)}
-            value={dueDate}
-          />
-        </FormControl>
-        <Spacer my="20px" mx="auto" />
-        
-        <FormControl
-          borderColor="#131313ff"
-          borderRadius="md"
-        >
-          <Text as="span" >Project category:</Text>
-          <Select 
-            styles={{ control: (styles) => ({ ...styles, borderColor: '#131313ff' }) }}
-            onChange={(option) => setCategory(option)}
-            options={categories}
-          />
-        </FormControl>
-        
-        <Spacer my="20px" mx="auto" />
+      <Box bg="#f59e9eff" borderRadius="8px" mt="10px" mx="auto">
+        <Box as="form"
+          onSubmit={handleSubmit}
+          maxW="500px"
+          borderRadius="4px"
+          mx="auto"
 
-        <FormControl
-          borderColor="#131313ff"
-          borderRadius="md"
         >
-          <Text as="span">Assign to:</Text>
-          <Select 
-            styles={{ control: (styles) => ({ ...styles, borderColor: '#131313ff' }) }}
-            onChange={(option) => setAssignedUsers(option)}
-            options={users}
-            isMulti
-          />
-        </FormControl>
+          <FormControl
+            borderColor="#131313ff"
+            borderRadius="md"
+          >
+            <Text as="span">Project name:</Text>
+            <Input
+              isRequired
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+            />
+          </FormControl  >
+          <Spacer my="20px" mx="auto" />
+          <FormControl
+            borderColor="#131313ff"
+            borderRadius="md"
+          >
+            <Text as="span">Project Details:</Text>
+            <Textarea
+              isRequired
+              onChange={(e) => setDetails(e.target.value)}
+              value={details}
+            ></Textarea>
+          </FormControl>
+          <Spacer my="20px" mx="auto" />
+          <FormControl
+            //borderColor="#131313ff"
+            //borderRadius="md"
+          >
+            <Text as="span">Set Duedate:</Text>
+            <Input
+              isRequired
+              type="date"
+              onChange={(e) => setDueDate(e.target.value)}
+              value={dueDate}
+            />
+          </FormControl>
+          <Spacer my="20px" mx="auto" />
 
-        <Spacer my="10px" mx="auto" />
+          <FormControl
+            borderColor="#131313ff"
+            borderRadius="md"
+          >
+            <Text as="span" >Project category:</Text>
+            <Select
+              styles={{ control: (styles) => ({ ...styles, borderColor: '#131313ff' }) }}
+              onChange={(option) => setCategory(option)}
+              options={categories}
+            />
+          </FormControl>
 
-        <Button colorScheme="teal" size="md" variant="solid" my="10px" mx="auto">
-          Add Project
-        </Button>
-        
-        {formError && <Text className="error">{formError}</Text>}
-        
-      </Box>
+          <Spacer my="20px" mx="auto" />
+
+          <FormControl
+            borderColor="#131313ff"
+            borderRadius="md"
+          >
+            <Text as="span">Assign to:</Text>
+            <Select
+              styles={{ control: (styles) => ({ ...styles, borderColor: '#131313ff' }) }}
+              onChange={(option) => setAssignedUsers(option)}
+              options={users}
+              isMulti
+            />
+          </FormControl>
+
+          <Spacer my="10px" mx="auto" />
+
+          <Button type="submit" colorScheme="teal" size="md" variant="solid" my="10px" mx="auto">
+            Add Project
+          </Button>
+
+          {formError && (
+            <Text color="red.500" fontSize="sm" mt="5px">
+              {formError}
+            </Text>
+          )}
+
+
+        </Box>
       </Box>
     </Box>
   )

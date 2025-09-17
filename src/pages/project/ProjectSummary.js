@@ -2,6 +2,7 @@ import Avatar from "../../componnents/Avatar"
 import { useFirestore } from "../../hooks/useFirestore"
 import { useHistory } from 'react-router-dom'
 import { useAuthContext } from "../../hooks/useAuthContext"
+import { Box, Button, Heading, Text } from "@chakra-ui/react"
 
 export default function ProjectSummary({ project }) {
   const { deleteDocument } = useFirestore('projects')
@@ -14,27 +15,43 @@ export default function ProjectSummary({ project }) {
   }
 
   return (
-    <div>
-      <div className="project-summary">
-        <h2 className="page-title">{project.name}</h2>
-        <p className="due-date">
+    <Box>
+      <Box
+        bg="#f59e9eff"
+        p="30px"
+        borderRadius="4px"
+      >
+        <Heading >{project.name}</Heading>
+        <Text
+          my="10px"
+          fontSize="0.9em"
+          color="var(--title-color)"
+        >
           Project due by {project.dueDate.toDate().toDateString()}
-        </p>
-        <p className="details">
+        </Text>
+        <Text 
+          my="30px"
+          color="var(--text-color)"
+          lineHeight="1.8em"
+          fontSize="0.9em">
           {project.details}
-        </p>
-        <h4>Project assigned to:</h4>
-        <div className="assigned-users">
+        </Text>
+        <Heading  
+         color="var(--text-color)" 
+         fontSize="0.9em">
+          Project assigned to:
+          </Heading>
+        <Box display="flex" mt="20px">
           {project.assignedUsersList.map(user => (
-            <div key={user.id}>
-              <Avatar src={user.photoURL} />
-            </div>
+            <Box  key={user.id}>
+              <Avatar mr="10px" src={user.photoURL} />
+            </Box>
           ))}
-        </div>
-      </div>
+        </Box>
+      </Box>
       {user.uid === project.createdBy.id && (
-        <button className="btn" onClick={handleClick}>Mark as Complete</button>
+        <Button mt="20px" onClick={handleClick}>Mark as Complete</Button>
       )}
-    </div>
+    </Box>
   )
 }

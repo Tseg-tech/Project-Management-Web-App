@@ -4,6 +4,7 @@ import { useAuthContext } from "../../hooks/useAuthContext"
 import { useFirestore } from "../../hooks/useFirestore"
 import Avatar from "../../componnents/Avatar"
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import { Box, Heading, UnorderedList, ListItem, Text, FormLabel,Textarea,Button } from "@chakra-ui/react"
 
 export default function ProjectComments({ project }) {
   const { user } = useAuthContext()
@@ -20,7 +21,7 @@ export default function ProjectComments({ project }) {
       createdAt: timestamp.fromDate(new Date()),
       id: Math.random()
     }
-    
+
     await updateDocument(project.id, {
       comments: [...project.comments, commentToAdd],
     })
@@ -30,36 +31,55 @@ export default function ProjectComments({ project }) {
   }
 
   return (
-    <div className="project-comments">
-      <h4>Project Comments</h4>
-
-      <ul>
+    <Box>
+      <Heading color="var(--heading-color)">Project Comments</Heading >
+      <UnorderedList listStyleType="none"
+            m={0} p={0}>
+        
         {project.comments.length > 0 && project.comments.map(comment => (
-          <li key={comment.id}>
-            <div className="comment-author">
-              <Avatar src={comment.photoURL} />
-              <p>{comment.displayName}</p>
-            </div>
-            <div className="comment-date">
-              <p>{formatDistanceToNow(comment.createdAt.toDate(), {addSuffix: true})}</p>
-            </div>
-            <div className="comment-content">
-              <p>{comment.content}</p>
-            </div>
-          </li>
+          <ListItem 
+            p="16px"
+            borderRadius="4px"
+            border="1px solid #f2f2f2"
+            mt="20px"
+            boxShadow="3px 3px 5px rgba(0,0,0,0.05)"
+            bg="#f59e9eff" key={comment.id}>
+            <Box
+              display="flex"
+              alignItems="center"
+              color="var(--title-color)"
+            >
+              <Avatar boxSize="30px"
+                mr="10px" src={comment.photoURL} />
+              <Text >{comment.displayName}</Text>
+            </Box>
+            <Box color="var(--text-color)"
+              fontSize="0.9em"
+              mt="4px"
+              mb="10px">
+              <Text>{formatDistanceToNow(comment.createdAt.toDate(), { addSuffix: true })}</Text>
+            </Box>
+            <Box color="var(--text-color)"
+              fontSize="0.9em">
+              <Text>{comment.content}</Text>
+            </Box>
+          </ListItem>
         ))}
-      </ul>
+      </UnorderedList>
 
-      <form className="add-comment" onSubmit={handleSubmit}>
-        <label>
-          <span>Add new comment:</span>
-          <textarea 
+      <Box as="form"  onSubmit={handleSubmit}>
+        <FormLabel mb="0px">
+          <Box as="span">Add new comment:</Box>
+          <Textarea
+            //minH="40px"
+            fontSize="1.5em"
+            bg="#f7ebebff"
             onChange={(e) => setNewComment(e.target.value)}
             value={newComment}
-          ></textarea>
-        </label>
-        <button className="btn">Add Comment</button>
-      </form>
-    </div>
+          ></Textarea>
+        </FormLabel>
+        <Button type="submit" mt="20px">Add Comment</Button>
+      </Box>
+    </Box>
   )
 }
