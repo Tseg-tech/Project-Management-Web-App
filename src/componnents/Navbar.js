@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useLogout } from '../hooks/useLogout'
 import { useAuthContext } from '../hooks/useAuthContext'
-
+import Avatar from "./Avatar"
 // styles & images  <img src={Temple} alt="dojo logo" />
 //import './Navbar.css'
 //import Temple from '../assets/temple.svg'
@@ -49,32 +49,48 @@ export default function Navbar() {
               <Box p="4" >
                 <HStack >
                   <Text
-                    //type="submit"
+                  //type="submit"
                   >
                     <Link to="/login">Login</Link>
                   </Text>
                   <Text
-                    //type="submit"
+                  //type="submit"
                   >
                     <Link to="/signup">Signup</Link>
                   </Text>
                 </HStack>
               </Box>
             </Flex>
-
           </>
         )}
 
         {user && (
+
           <Flex>
-            <Box p="4" ></Box>
+            <Box p="4">
+              <HStack>
+                <Heading><SiAnalogue color="red" /> </Heading>
+                <Box as="span" fontWeight="bold">DMP</Box>
+              </HStack>
+            </Box>
+            <Spacer />
             <Spacer />
             <Box p="4" >
               <ListItem>
                 <HStack>
+                  <Box
+                    colorPalette="blue"
+                    bg={{ base: "colorPalette.600", _dark: "colorPalette.400" }}
+                    display="flex"
+                    alignItems="center"
+                  >
+                    <Text mr="10px" ml="10px">{user.displayName}</Text>
+                    <Avatar src={user.photoURL} />
+
+                  </Box>
                   <Button
-                    colorScheme="pink"
-                    bg="#f59e9eff"
+                    // colorScheme="pink"
+                    //bg="#f59e9eff"
                     onClick={logout}
                     isLoading={isPending}
                     loadingText="Logging out..."
@@ -84,12 +100,7 @@ export default function Navbar() {
                     {isPending ? "Logging out..." : "Logout"}
 
                   </Button>
-                  <Box
-                    colorPalette="blue"
-                    bg={{ base: "colorPalette.600", _dark: "colorPalette.400" }}
-                  >
-                    Hello World
-                  </Box>
+
                 </HStack>
               </ListItem>
             </Box>

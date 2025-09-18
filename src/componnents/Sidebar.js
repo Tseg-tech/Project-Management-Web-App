@@ -23,7 +23,7 @@ export default function Sidebar() {
   return (
     <Box
       width="300px"
-      //w="fit-content"
+     // w="fit-content"
       minWidth="300px"
       bg="#f59e9eff"
       minHeight="100vh"
@@ -34,7 +34,7 @@ export default function Sidebar() {
 
     >
       <Box position="fixed" width="inherit" >
-        <Box
+        {/* <Box
           //w="fit-content"
           fontWeight="bold"
           textAlign="center"
@@ -47,7 +47,7 @@ export default function Sidebar() {
         >
           <Avatar src={user.photoURL} />
           <Text>{user.displayName}</Text>
-        </Box>
+        </Box> */}
         <Box as="nav"
           //bg="#4c0606ff"
           marginTop="80px"
