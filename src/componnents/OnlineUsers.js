@@ -26,7 +26,8 @@ export default function OnlineUsers() {
         right="20px"
         size="lg"
         borderRadius="full"
-        colorScheme="green"
+        colorScheme='pink'
+        bg="#f59e9eff"
       />
 
 
@@ -39,20 +40,24 @@ export default function OnlineUsers() {
           w="fit-content"
           maxW="90vw"
           p="30px"
-          bg="#c8f078ff"
+          //bg="#c8f078ff"
+          bg="#f59e9eff"
           color="var(--heading-color)"
           borderRadius="10px"
           boxShadow="md"
           zIndex="1000"
+          //display="grid"
+           //columnGap="20px"
+
         >
           <Heading
-            textAlign="right"
+            textAlign="center"
             mb="20px"
             pb="10px"
             borderBottom="1px solid #eeeeee"
             fontSize="1.2em"
           >
-            All Users
+             Users
           </Heading>
 
           {isPending && <Spinner size="sm" color="green.500" />}
@@ -66,6 +71,7 @@ export default function OnlineUsers() {
                 alignItems="center"
                 justifyContent="flex-end"
                 mb="12px"
+
               >
                 {user.online && (
                   <Box
@@ -78,7 +84,7 @@ export default function OnlineUsers() {
                     borderRadius="50%"
                   />
                 )}
-                <Text>{user.displayName}</Text>
+                <Text mr="10px">{user.displayName}</Text>
                 <Avatar
                   src={user.photoURL}
                   ml="10px"

@@ -19,7 +19,7 @@ import {
   Heading,
   List,
   ListItem,
- 
+
 
 } from '@chakra-ui/react';
 
@@ -30,11 +30,11 @@ import { SiAnalogue } from "react-icons/si"
 export default function Navbar() {
   const { logout, isPending } = useLogout()
   const { user } = useAuthContext()
-  
+
   return (
 
     <Box as="nav">
-      
+
       <List >
         {!user && (
           <>
@@ -50,13 +50,15 @@ export default function Navbar() {
                 <HStack>
                   <Button
                     type="submit"
-                    colorScheme="teal"
+                    colorScheme="pink"
+                    bg="#f59e9eff"
                   >
                     <Link to="/login">Login</Link>
                   </Button>
                   <Button
                     type="submit"
-                    colorScheme="teal"
+                    colorScheme="pink"
+                    bg="#f59e9eff"
                   >
                     <Link to="/signup">Signup</Link>
                   </Button>
@@ -74,23 +76,24 @@ export default function Navbar() {
             <Box p="4" >
               <ListItem>
                 <HStack>
-                <Button
-                  colorScheme="teal"
-                  onClick={logout}
-                  isLoading={isPending}
-                  loadingText="Logging out..."
-                //isDisabled={isPending}
-                //{isPending ? "Logging out..." : "Logout"}
-                >
-                  {isPending ? "Logging out..." : "Logout"}
+                  <Button
+                    colorScheme="pink"
+                    bg="#f59e9eff"
+                    onClick={logout}
+                    isLoading={isPending}
+                    loadingText="Logging out..."
+                  //isDisabled={isPending}
+                  //{isPending ? "Logging out..." : "Logout"}
+                  >
+                    {isPending ? "Logging out..." : "Logout"}
 
-                </Button>
-                <Box
-                  colorPalette="blue"
-                  bg={{ base: "colorPalette.600", _dark: "colorPalette.400" }}
-                >
-                  Hello World
-                </Box>
+                  </Button>
+                  <Box
+                    colorPalette="blue"
+                    bg={{ base: "colorPalette.600", _dark: "colorPalette.400" }}
+                  >
+                    Hello World
+                  </Box>
                 </HStack>
               </ListItem>
             </Box>

@@ -62,6 +62,9 @@ export default function Sidebar() {
             <ListItem
 
               marginLeft="20px"
+              borderRadius="50px"
+              bg="#ede3e3ff"
+              w="fit-content"
             >
               <NavLink
 
@@ -94,8 +97,11 @@ export default function Sidebar() {
                   <Image
                     src={DashboardIcon}
                     alt="dashboard icon"
+                    ml="10px"
+                    mt="10px"
+                    mb="10px"
                   />
-                  <Text color="inherit" fontWeight="bold" >Dashboard</Text>
+                  <Text color="inherit" fontWeight="bold" mr="20px" >Dashboard</Text>
                 </Flex>
               </NavLink>
             </ListItem>
@@ -103,6 +109,10 @@ export default function Sidebar() {
             <ListItem
               marginTop="10px"
               marginLeft="20px"
+              borderRadius="50px"
+              bg="#ede3e3ff"
+              w="fit-content"
+              
             >
               <NavLink
 
@@ -128,8 +138,13 @@ export default function Sidebar() {
                           }
                         `}
                 >
-                  <Img src={AddIcon} alt="add project icon" />
-                  <Text color="inherit" fontWeight="bold">New Project</Text>
+                  <Img 
+                  
+                    ml="10px"
+                    mt="10px"
+                    mb="10px"
+                    src={AddIcon} alt="add project icon" />
+                  <Text color="inherit" fontWeight="bold" mr="20px">Create</Text>
                 </Flex>
               </NavLink>
             </ListItem>

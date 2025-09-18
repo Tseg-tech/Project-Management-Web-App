@@ -12,10 +12,10 @@ import {
   Spinner,
   Alert,
   AlertIcon,
-  InputGroup,Popover,
-   Portal, 
-   Text, 
-   Theme,
+  InputGroup, Popover,
+  Portal,
+  Text,
+  Theme,
 } from '@chakra-ui/react';
 import { MdOutlineMail } from "react-icons/md";
 // styles
@@ -32,7 +32,7 @@ export default function Login() {
   }
 
   return (
-    
+
     <Box
       maxW="400px"
       mx="auto"
@@ -51,7 +51,7 @@ export default function Login() {
     >
       <form onSubmit={handleSubmit}>
         <VStack spacing={5}>
-          <Heading size="lg" textAlign="center">
+          <Heading size="lg" textAlign="center" >
             Login
           </Heading>
 
@@ -78,7 +78,8 @@ export default function Login() {
 
           <Button
             type="submit"
-            colorScheme="teal"
+            colorScheme="pink"
+            bg="#f59e9eff"
             width="full"
             isLoading={isPending}
             loadingText="Loading"

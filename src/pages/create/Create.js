@@ -102,9 +102,11 @@ export default function Create() {
         fontSize="1.2em"
         my="20px"
         mx="auto"
-
+        textAlign="center"
       // alignItems="center"
-      >New Project</Heading>
+      >
+        Task
+        </Heading>
       <Box bg="#f59e9eff" borderRadius="8px" mt="10px" mx="auto">
         <Box as="form"
           onSubmit={handleSubmit}
@@ -181,8 +183,8 @@ export default function Create() {
 
           <Spacer my="10px" mx="auto" />
 
-          <Button type="submit" colorScheme="teal" size="md" variant="solid" my="10px" mx="auto">
-            Add Project
+          <Button type="submit" bg="#f59e9eff" colorScheme="pink" size="md" variant="solid" my="10px" mx="auto" left="40%">
+            Add 
           </Button>
 
           {formError && (

@@ -15,7 +15,7 @@ export default function ProjectSummary({ project }) {
   }
 
   return (
-    <Box>
+    <Box >
       <Box
         bg="#f59e9eff"
         p="30px"
@@ -49,9 +49,11 @@ export default function ProjectSummary({ project }) {
           ))}
         </Box>
       </Box>
+
       {user.uid === project.createdBy.id && (
-        <Button mt="20px" onClick={handleClick}>Mark as Complete</Button>
+        <Button  mt="20px" onClick={handleClick}>Mark as Complete</Button>
       )}
+      {/* //<Button>Submit</Button> */}
     </Box>
   )
 }
