@@ -23,8 +23,9 @@ function App() {
     
     <Box
       minH="100vh"
-      bgImage="url('/github.png')"
-      bgSize= "auto"
+      
+    //  bgImage="url('/github.png')"
+      //bgSize= "auto"
       //bgPosition="center"
       bgRepeat="repeat"
     >

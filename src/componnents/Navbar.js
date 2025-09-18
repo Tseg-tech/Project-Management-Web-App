@@ -47,21 +47,17 @@ export default function Navbar() {
               </Box>
               <Spacer />
               <Box p="4" >
-                <HStack>
-                  <Button
-                    type="submit"
-                    colorScheme="pink"
-                    bg="#f59e9eff"
+                <HStack >
+                  <Text
+                    //type="submit"
                   >
                     <Link to="/login">Login</Link>
-                  </Button>
-                  <Button
-                    type="submit"
-                    colorScheme="pink"
-                    bg="#f59e9eff"
+                  </Text>
+                  <Text
+                    //type="submit"
                   >
                     <Link to="/signup">Signup</Link>
-                  </Button>
+                  </Text>
                 </HStack>
               </Box>
             </Flex>
