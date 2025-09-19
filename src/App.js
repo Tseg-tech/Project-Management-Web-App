@@ -23,17 +23,12 @@ function App() {
     
     <Box
       minH="100vh"
-      
-    //  bgImage="url('/github.png')"
-      //bgSize= "auto"
-      //bgPosition="center"
-      bgRepeat="repeat"
     >
-      <div className="App">
+      <Box display="flex">
         {authIsReady && (
           <BrowserRouter>
             {user && <Sidebar />}
-            <div className="container">
+            <Box flex="1" px="60px">
               <Navbar />
               <Switch>
                 <Route exact path="/">
@@ -57,11 +52,11 @@ function App() {
                   {!user && <Signup />}
                 </Route>
               </Switch>
-            </div>
+            </Box>
             {user && <OnlineUsers />}
           </BrowserRouter>
         )}
-      </div>
+      </Box>
     </Box>
   );
 }
