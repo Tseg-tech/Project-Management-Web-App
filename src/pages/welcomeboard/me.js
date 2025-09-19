@@ -1,55 +1,32 @@
-import { Box, Text, Button, Link as ChakraLink, } from '@chakra-ui/react';
-
-import { Link, Link as RouterLink, useLocation } from 'react-router-dom'
-import { BeatLoader } from "react-spinners"
-
+import { Box, Text, Button, AbsoluteCenter,Heading } from '@chakra-ui/react';
 
 export default function Welcome() {
 
-    const location = useLocation();
-    const isActive = (path) => location.pathname === path;
+
     return (
 
         <Box
-            maxW="400px"
-            mx="auto"
-            mt={12}
-            p={6}
+             width="100%"
+             padding= "1rem"
+             pt="25vh"
+       
         >
-            <Text mb="10px">Hey, I'm Tseganeh</Text>
-            {/* <Button
-                size="md"
-                type="submit"
-                variant="plain"
-                color="white"
+            {/* <AbsoluteCenter> */}
+            <Heading>Welcome aboard!</Heading>
+            <Text mb="10px">Hey, I'm Tseganeh! </Text>
+            <Text mb="10px">Welcome! This onboarding will guide you through setting up projects, tracking progress, and collaborating effortlessly with your team.</Text>
+            <Button asChild color="white"
                 bg="green"
-                rounded="2xl"
-            >
-
-                <ChakraLink
-                    as={RouterLink}
-                    to="/login"
-
-                    fontWeight="bold"
-                    _focus={{ boxShadow: "none" }}
-                    transition="all 0.3s ease"
-
-                >
-                    Get Started
-                </ChakraLink>
-            </Button> */}
-            <Button asChild  color="white"
-                bg="green"
-              //  variant="solid"
-                colorPalette="light-green" 
+                colorPalette="light-green"
                 variant="surface"
-                >
+            >
                 <a href="/login"> Get Started</a>
             </Button>
-
-            
+         
+            {/* </AbsoluteCenter> */}
 
         </Box>
+
 
     )
 }
