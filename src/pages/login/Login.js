@@ -45,9 +45,9 @@ export default function Login() {
       borderRadius="md"
       boxShadow="md"
       //bgImage="url('/tseg.jpg')"
-      bgSize="100% 100%"
-      bgPosition="center"
-      bgRepeat="no-repeat"
+      // bgSize="100% 100%"
+      // bgPosition="center"
+      // bgRepeat="no-repeat"
     >
       <form onSubmit={handleSubmit}>
         <VStack spacing={5}>

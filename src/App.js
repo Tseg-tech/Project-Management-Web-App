@@ -14,6 +14,7 @@ import Project from './pages/project/Project'
 import Navbar from './componnents/Navbar'
 import Sidebar from './componnents/Sidebar'
 import OnlineUsers from './componnents/OnlineUsers'
+import Welcome from './pages/welcomeboard/me'
 
 function App() {
   const { authIsReady, user } = useAuthContext()
@@ -30,18 +31,24 @@ function App() {
             {user && <Sidebar />}
             <Box flex="1" px="60px">
               <Navbar />
+              
               <Switch>
                 <Route exact path="/">
-                  {!user && <Redirect to="/login" />}
+                  {!user && <Redirect to="/welcomeboard"/>}
                   {user && <Dashboard />}
                 </Route>
+               
                 <Route path="/create">
-                  {!user && <Redirect to="/login" />}
+                  {!user && <Redirect to="/welcomeboard" />}
                   {user && <Create />}
                 </Route>
                 <Route path="/projects/:id">
-                  {!user && <Redirect to="/login" />}
+                  {!user && <Redirect to="/welcomeboard" />}
                   {user && <Project />}
+                </Route>
+                 <Route path="/welcomeboard">
+                  {!user && <Welcome/>}
+                  {user && <Redirect to="/" />}
                 </Route>
                 <Route path="/login">
                   {user && <Redirect to="/" />}
@@ -51,6 +58,7 @@ function App() {
                   {user && <Redirect to="/" />}
                   {!user && <Signup />}
                 </Route>
+              
               </Switch>
             </Box>
             {user && <OnlineUsers />}

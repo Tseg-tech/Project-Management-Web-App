@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, Link as RouterLink, useLocation } from 'react-router-dom'
 import { useLogout } from '../hooks/useLogout'
 import { useAuthContext } from '../hooks/useAuthContext'
 import Avatar from "./Avatar"
@@ -19,6 +19,7 @@ import {
   Heading,
   List,
   ListItem,
+  Link as ChakraLink
 
 
 } from '@chakra-ui/react';
@@ -31,6 +32,9 @@ export default function Navbar() {
   const { logout, isPending } = useLogout()
   const { user } = useAuthContext()
 
+  const location = useLocation();
+  const isActive = (path) => location.pathname === path;
+
   return (
 
     <Box as="nav">
@@ -40,23 +44,50 @@ export default function Navbar() {
           <>
             <Flex gap="4" justify="space-between">
               <Box p="4">
-                <HStack>
-                  <Heading><SiAnalogue color="red" /> </Heading>
-                  <Box as="span" fontWeight="bold">DMP</Box>
-                </HStack>
+                <ChakraLink
+                  as={RouterLink}
+                  to="/welcomeboard"
+                  _focus={{ boxShadow: "none" }}
+                  cursor="pointer"
+                  transition="all 0.2s"
+            
+                >
+                  <HStack >
+                    <Heading><SiAnalogue color="red" /> </Heading>
+                    <Box as="span" _hover={{color: "blue.500",fontWeight: "normal"}} fontWeight= "bold">DMP</Box>
+                  </HStack>
+                </ChakraLink>
               </Box>
               <Spacer />
               <Box p="4" >
                 <HStack >
-                  <Text
-                  //type="submit"
-                  >
-                    <Link to="/login">Login</Link>
+                  <Text>
+                    <ChakraLink
+                      as={RouterLink}
+                      to="/login"
+                      textDecoration={isActive("/login") ? "underline" : "none"}
+                      _hover={{ color: "blue.500", textDecoration: "underline" }}
+                      color={isActive("/login") ? "green" : "black"}
+                      _focus={{ boxShadow: "none", outline: "none" }} // 👈 This removes the box
+                      transition="all 0.2s"
+                      px="4"
+                    >
+                      Login
+                    </ChakraLink>
                   </Text>
-                  <Text
-                  //type="submit"
-                  >
-                    <Link to="/signup">Signup</Link>
+                  <Text>
+                    <ChakraLink
+                      as={RouterLink}
+                      to="/signup"
+                      textDecoration={isActive("/signup") ? "underline" : "none"}
+                      _hover={{ color: "blue.500", textDecoration: "underline" }}
+                      color={isActive("/signup") ? "green" : "black"}
+                      _focus={{ boxShadow: "none", outline: "none" }} // 👈 This removes the box
+                      transition="all 0.2s"
+                      px="4"
+                    >
+                      Sign up
+                    </ChakraLink>
                   </Text>
                 </HStack>
               </Box>
