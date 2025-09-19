@@ -57,10 +57,12 @@ export default function Signup() {
 
   return (
     <Box
+      width="100%"
       maxW="400px"
       mx="auto"
       mt={12}
-      p={6}
+      padding="1rem"
+     // p={6}
       bg="rgba(255, 255, 255, 0.1)"  // light transparent white
       backdropFilter="blur(10px)"    // adds blur effect (like glass)
       borderWidth="1px"
@@ -114,6 +116,9 @@ export default function Signup() {
           <Button
             type="submit"
             colorScheme="teal"
+            bg="green"
+            variant="surface"
+            color="white"
             width="full"
             isLoading={isPending}
             loadingText="Loading"

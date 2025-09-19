@@ -34,20 +34,19 @@ export default function Login() {
   return (
 
     <Box
+      width="100%"
       maxW="400px"
       mx="auto"
       mt={12}
-      p={6}
+      padding= "1rem"
+      // p={6}
       bg="rgba(255, 255, 255, 0.1)"  // light transparent white
       backdropFilter="blur(10px)"    // adds blur effect (like glass)
       borderWidth="1px"
       borderColor="gray.200"
       borderRadius="md"
       boxShadow="md"
-      //bgImage="url('/tseg.jpg')"
-      // bgSize="100% 100%"
-      // bgPosition="center"
-      // bgRepeat="no-repeat"
+     
     >
       <form onSubmit={handleSubmit}>
         <VStack spacing={5}>
@@ -78,8 +77,10 @@ export default function Login() {
 
           <Button
             type="submit"
-            colorScheme="pink"
-            bg="#f59e9eff"
+            colorScheme="teal"
+            bg="green"
+            variant="surface"
+            color="white"
             width="full"
             isLoading={isPending}
             loadingText="Loading"

@@ -1,4 +1,4 @@
-import {  Link as RouterLink, useLocation } from 'react-router-dom'
+import { Link, Link as RouterLink, useLocation } from 'react-router-dom'
 import { useLogout } from '../hooks/useLogout'
 import { useAuthContext } from '../hooks/useAuthContext'
 import Avatar from "./Avatar"
@@ -19,10 +19,13 @@ import {
   Heading,
   List,
   ListItem,
-  Link as ChakraLink
-
+  Link as ChakraLink,
+  useDisclosure,
+  Image, IconButton
 
 } from '@chakra-ui/react';
+
+import HamburgerIconImg from '../assets/hamburger-menu.svg'; // or .png/.jpg
 
 //import { DecorativeBox } from "compositions/lib/decorative-box"
 
@@ -35,9 +38,16 @@ export default function Navbar() {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
 
+  const { isOpen, onToggle } = useDisclosure();
+
   return (
 
-    <Box as="nav">
+    <Box
+      as="nav"
+      bg="gray.50"
+      boxShadow="md"
+      px={4}
+      py={2} >
 
       <List >
         {!user && (
@@ -50,13 +60,36 @@ export default function Navbar() {
                   _focus={{ boxShadow: "none" }}
                   cursor="pointer"
                   transition="all 0.2s"
-            
+                  _hover={{
+                    textDecoration: "none", // Prevent default anchor underline
+                  }}
+
                 >
                   <HStack >
                     <Heading><SiAnalogue color="red" /> </Heading>
-                    <Box as="span" _hover={{color: "blue.500",fontWeight: "normal"}} fontWeight= "bold">DMP</Box>
+                    <Box
+                      as="span"
+                      borderBottom={isActive("/welcomeboard") ? "2px solid green" : "none"}
+                      _hover={{
+                        color: "blue.500",
+                        fontWeight: "normal",
+                        textDecoration: "none"
+                        //borderBottom: "2px solid blue" // Custom hover underline
+                      }} // custom underline
+
+                      paddingBottom="2px" fontWeight="bold"
+                    >
+                      DMP
+                    </Box>
                   </HStack>
                 </ChakraLink>
+                {/* <IconButton
+                  aria-label="Toggle Menu"
+                  icon={isOpen ? <CloseIcon /> : <HamburgerIconImg />}
+                  display={{ base: "block", md: "none" }}
+                  onClick={onToggle}
+                  variant="ghost"
+                /> */}
               </Box>
               <Spacer />
               <Box p="4" >
@@ -65,8 +98,10 @@ export default function Navbar() {
                     <ChakraLink
                       as={RouterLink}
                       to="/login"
-                      textDecoration={isActive("/login") ? "underline" : "none"}
-                      _hover={{ color: "blue.500", textDecoration: "underline" }}
+                      borderBottom={isActive("/login") ? "2px solid green" : "none"}  // custom underline
+                      paddingBottom="2px"
+
+                      _hover={{ color: "blue.500", textDecoration: "none" }}
                       color={isActive("/login") ? "green" : "black"}
                       _focus={{ boxShadow: "none", outline: "none" }} // 👈 This removes the box
                       transition="all 0.2s"
@@ -79,8 +114,10 @@ export default function Navbar() {
                     <ChakraLink
                       as={RouterLink}
                       to="/signup"
-                      textDecoration={isActive("/signup") ? "underline" : "none"}
-                      _hover={{ color: "blue.500", textDecoration: "underline" }}
+                      borderBottom={isActive("/signup") ? "2px solid green" : "none"}
+
+                      _hover={{ color: "blue.500", textDecoration: "none" }}
+                      paddingBottom="2px"
                       color={isActive("/signup") ? "green" : "black"}
                       _focus={{ boxShadow: "none", outline: "none" }} // 👈 This removes the box
                       transition="all 0.2s"
@@ -120,8 +157,10 @@ export default function Navbar() {
 
                   </Box>
                   <Button
-                    // colorScheme="pink"
-                    //bg="#f59e9eff"
+                    colorScheme="teal"
+                    bg="green"
+                    variant="surface"
+                    color="white"
                     onClick={logout}
                     isLoading={isPending}
                     loadingText="Logging out..."
