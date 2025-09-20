@@ -14,7 +14,7 @@ export default function Welcome() {
         >
             {/* <AbsoluteCenter> */}
             <Heading>Welcome aboard!</Heading>
-            <Text mb="10px">Hey, I'm Tseganeh! </Text>
+            <Text >Hey, I'm Tseganeh! </Text>
             <Text mb="10px">Welcome! This onboarding will guide you through setting up projects, tracking progress, and collaborating effortlessly with your team.</Text>
             <Button asChild 
                 color="white"

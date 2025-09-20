@@ -41,13 +41,14 @@ export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-
+  //<Stack direction={{ base: "column", md: "row" }} gap="10">
     <Box
       as="nav"
-      bg="gray.50"
-      boxShadow="md"
-      px={4}
-      py={2} >
+      // bg="gray.50"
+      // boxShadow="md"
+      // px={4}
+      // py={2}
+       >
 
       <List >
         {!user && (
@@ -179,5 +180,6 @@ export default function Navbar() {
         )}
       </List>
     </Box>
+   // </Stack>
   )
 }

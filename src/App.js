@@ -12,7 +12,7 @@ import Login from './pages/login/Login'
 import Signup from './pages/signup/Signup'
 import Project from './pages/project/Project'
 import Navbar from './componnents/Navbar'
-import Sidebar from './componnents/Sidebar'
+// import Sidebar from './componnents/Sidebar'
 import OnlineUsers from './componnents/OnlineUsers'
 import Welcome from './pages/welcomeboard/me'
 
@@ -28,7 +28,7 @@ function App() {
       <Box display="flex">
         {authIsReady && (
           <BrowserRouter>
-            {user && <Sidebar />}
+            {/* {user && <Sidebar />} */}
             <Box flex="1" px="60px">
               <Navbar />
               

@@ -25,7 +25,7 @@ export default function Sidebar() {
       width="300px"
      // w="fit-content"
       minWidth="300px"
-      bg="#f59e9eff"
+     // bg="#f59e9eff"
       minHeight="100vh"
       boxSizing="border-box"
       position="relative"

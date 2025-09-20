@@ -8,7 +8,7 @@ import {
   Input,
   Heading,
   Text,
-  VStack,
+  // VStack,
   Spinner,
   Alert,
   AlertIcon,
@@ -63,16 +63,16 @@ export default function Signup() {
       mt={12}
       padding="1rem"
      // p={6}
-      bg="rgba(255, 255, 255, 0.1)"  // light transparent white
-      backdropFilter="blur(10px)"    // adds blur effect (like glass)
-      borderWidth="1px"
-      borderColor="gray.200"
-      borderRadius="md"
-      boxShadow="md"
+      // bg="rgba(255, 255, 255, 0.1)"  // light transparent white
+      // backdropFilter="blur(10px)"    // adds blur effect (like glass)
+      // borderWidth="1px"
+      // borderColor="gray.200"
+      // borderRadius="md"
+      // boxShadow="md"
     >
       <form onSubmit={handleSubmit} >
-        <VStack spacing={5}>
-          <Heading size="lg" textAlign="center" >Sign Up</Heading>
+        {/* <VStack spacing={5}> */}
+          <Heading size="lg" textAlign="center" > Welcome!</Heading>
           <FormControl id="email" isRequired>
             <FormLabel>Email</FormLabel>
             <InputGroup startElement={<MdOutlineMail />}>
@@ -119,7 +119,8 @@ export default function Signup() {
             bg="green"
             variant="surface"
             color="white"
-            width="full"
+            mt="10px"
+          //  width="full"
             isLoading={isPending}
             loadingText="Loading"
           >
@@ -127,7 +128,7 @@ export default function Signup() {
           </Button>
 
           {error && <div className="error">{error}</div>}
-        </VStack>
+        {/* </VStack> */}
       </form>
     </Box>
   )

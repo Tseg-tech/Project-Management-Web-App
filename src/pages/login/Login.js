@@ -16,6 +16,7 @@ import {
   Portal,
   Text,
   Theme,
+  Stack
 } from '@chakra-ui/react';
 import { MdOutlineMail } from "react-icons/md";
 // styles
@@ -32,7 +33,7 @@ export default function Login() {
   }
 
   return (
-
+<Stack direction={{ base: "column", md: "row" }} gap="10">
     <Box
       width="100%"
       maxW="400px"
@@ -40,18 +41,18 @@ export default function Login() {
       mt={12}
       padding= "1rem"
       // p={6}
-      bg="rgba(255, 255, 255, 0.1)"  // light transparent white
-      backdropFilter="blur(10px)"    // adds blur effect (like glass)
-      borderWidth="1px"
-      borderColor="gray.200"
-      borderRadius="md"
-      boxShadow="md"
+      // bg="rgba(255, 255, 255, 0.1)"  // light transparent white
+      // backdropFilter="blur(10px)"    // adds blur effect (like glass)
+      // borderWidth="1px"
+      // borderColor="gray.200"
+      // borderRadius="md"
+      // boxShadow="md"
      
     >
       <form onSubmit={handleSubmit}>
-        <VStack spacing={5}>
+        {/* <VStack spacing={5}> */}
           <Heading size="lg" textAlign="center" >
-            Login
+            Welcome!
           </Heading>
 
           <FormControl id="email" isRequired>
@@ -76,15 +77,13 @@ export default function Login() {
           </FormControl>
 
           <Button
+            mt="10px"
             type="submit"
             colorScheme="teal"
             bg="green"
             variant="surface"
             color="white"
-            width="full"
-            isLoading={isPending}
-            loadingText="Loading"
-          >
+            >
             Log in
           </Button>
 
@@ -94,8 +93,9 @@ export default function Login() {
               {error}
             </Alert>
           )}
-        </VStack>
+        {/* </VStack> */}
       </form>
     </Box>
+    </Stack>
   )
 }
