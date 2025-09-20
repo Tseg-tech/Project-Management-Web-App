@@ -1,5 +1,5 @@
 import { Box, Text, Button, AbsoluteCenter,Heading } from '@chakra-ui/react';
-
+import { FaChild } from "react-icons/fa"
 export default function Welcome() {
 
 
@@ -14,7 +14,7 @@ export default function Welcome() {
         >
             {/* <AbsoluteCenter> */}
             <Heading>Welcome aboard!</Heading>
-            <Text >Hey, I'm Tseganeh! </Text>
+            <Text display="flex" alignItems="center" justifyContent="flex-start">Hey, I'm Tseganeh! {<FaChild  className="size-6 text-blue-500" />} </Text>
             <Text mb="10px">Welcome! This onboarding will guide you through setting up projects, tracking progress, and collaborating effortlessly with your team.</Text>
             <Button asChild 
                 color="white"
