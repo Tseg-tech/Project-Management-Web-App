@@ -71,6 +71,7 @@ export default function Login() {
             <FormLabel>Password</FormLabel>
             <Input
               type="password"
+              placeholder="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
