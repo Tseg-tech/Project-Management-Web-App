@@ -19,6 +19,7 @@ export default function ProjectFilter({ changeFilter }) {
         my="20px"
         mx="auto"
         display="flex"
+        justifyContent="space-evenly"
         p="10px"
         bg="#f59e9eff"
         borderRadius="4px"

@@ -2,7 +2,7 @@ import Avatar from "../../componnents/Avatar"
 import { useFirestore } from "../../hooks/useFirestore"
 import { useHistory } from 'react-router-dom'
 import { useAuthContext } from "../../hooks/useAuthContext"
-import { Box, Button, Heading, Text } from "@chakra-ui/react"
+import { Box, Button, Heading, Text, AbsoluteCenter } from "@chakra-ui/react"
 
 export default function ProjectSummary({ project }) {
   const { deleteDocument } = useFirestore('projects')
@@ -20,6 +20,7 @@ export default function ProjectSummary({ project }) {
         bg="#f59e9eff"
         p="30px"
         borderRadius="4px"
+        mt="40px"
       >
         <Heading >{project.name}</Heading>
         <Text
@@ -29,21 +30,21 @@ export default function ProjectSummary({ project }) {
         >
           Project due by {project.dueDate.toDate().toDateString()}
         </Text>
-        <Text 
+        <Text
           my="30px"
           color="var(--text-color)"
           lineHeight="1.8em"
           fontSize="0.9em">
           {project.details}
         </Text>
-        <Heading  
-         color="var(--text-color)" 
-         fontSize="0.9em">
+        <Heading
+          color="var(--text-color)"
+          fontSize="0.9em">
           Project assigned to:
-          </Heading>
+        </Heading>
         <Box display="flex" mt="20px">
           {project.assignedUsersList.map(user => (
-            <Box  key={user.id}>
+            <Box key={user.id}>
               <Avatar mr="10px" src={user.photoURL} />
             </Box>
           ))}
@@ -51,9 +52,9 @@ export default function ProjectSummary({ project }) {
       </Box>
 
       {user.uid === project.createdBy.id && (
-        <Button  mt="20px" onClick={handleClick}>Mark as Complete</Button>
+        <Button mt="20px" onClick={handleClick}>Mark as Complete</Button>
       )}
-      {/* //<Button>Submit</Button> */}
+
     </Box>
   )
 }

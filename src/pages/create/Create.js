@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link, Link as RouterLink, useLocation, } from 'react-router-dom'
 import { useCollection } from '../../hooks/useCollection'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { timestamp } from '../../firebase/config'
@@ -19,6 +20,7 @@ import {
   Textarea,
   Button,
   Spacer,
+  AbsoluteCenter
 } from '@chakra-ui/react';
 
 const categories = [
@@ -52,9 +54,12 @@ export default function Create() {
     }
   }, [documents])
 
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setFormError(null)
+    
 
     if (!category) {
       setFormError('Please select a project category.')
@@ -92,110 +97,116 @@ export default function Create() {
     if (!response.error) {
       history.push('/')
     }
+    history.push('/dashboard');  // Navigate programmatically
   }
 
   return (
-    <Box maxW="600px" my="110px"  >
-      <Heading
-        fontFamily="inherit"
-        fontWeight="bold"
-        fontSize="1.2em"
-        my="20px"
+
+
+    <Box
+      width="100%"
+      maxW="400px"
+      mx="auto"
+      mt={12}
+      padding="1rem">
+
+      <Box as="form"
+        onSubmit={handleSubmit}
+        maxW="500px"
+        borderRadius="4px"
         mx="auto"
-        textAlign="center"
-      // alignItems="center"
+
       >
-        Task
-        </Heading>
-      <Box bg="#f59e9eff" borderRadius="8px" mt="10px" mx="auto">
-        <Box as="form"
-          onSubmit={handleSubmit}
-          maxW="500px"
-          borderRadius="4px"
-          mx="auto"
-
+        <Heading
+          size="md" textAlign="center"
         >
-          <FormControl
-            borderColor="#131313ff"
-            borderRadius="md"
-          >
-            <Text as="span">Project name:</Text>
-            <Input
-              isRequired
-              type="text"
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-            />
-          </FormControl  >
-          <Spacer my="20px" mx="auto" />
-          <FormControl
-            borderColor="#131313ff"
-            borderRadius="md"
-          >
-            <Text as="span">Project Details:</Text>
-            <Textarea
-              isRequired
-              onChange={(e) => setDetails(e.target.value)}
-              value={details}
-            ></Textarea>
-          </FormControl>
-          <Spacer my="20px" mx="auto" />
-          <FormControl
-            //borderColor="#131313ff"
-            //borderRadius="md"
-          >
-            <Text as="span">Set Duedate:</Text>
-            <Input
-              isRequired
-              type="date"
-              onChange={(e) => setDueDate(e.target.value)}
-              value={dueDate}
-            />
-          </FormControl>
-          <Spacer my="20px" mx="auto" />
+          Task
+        </Heading>
+        <FormControl
+          borderColor="#131313ff"
+          borderRadius="md"
+        >
+          <Text as="span">Project name:</Text>
+          <Input
+            isRequired
+            type="text"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+          />
+        </FormControl  >
+        <Spacer my="20px" mx="auto" />
+        <FormControl
+          borderColor="#131313ff"
+          borderRadius="md"
+        >
+          <Text as="span">Project Details:</Text>
+          <Textarea
+            isRequired
+            onChange={(e) => setDetails(e.target.value)}
+            value={details}
+          ></Textarea>
+        </FormControl>
+        <Spacer my="20px" mx="auto" />
+        <FormControl
+        //borderColor="#131313ff"
+        //borderRadius="md"
+        >
+          <Text as="span">Set Duedate:</Text>
+          <Input
+            isRequired
+            type="date"
+            onChange={(e) => setDueDate(e.target.value)}
+            value={dueDate}
+          />
+        </FormControl>
+        <Spacer my="20px" mx="auto" />
 
-          <FormControl
-            borderColor="#131313ff"
-            borderRadius="md"
-          >
-            <Text as="span" >Project category:</Text>
-            <Select
-              styles={{ control: (styles) => ({ ...styles, borderColor: '#131313ff' }) }}
-              onChange={(option) => setCategory(option)}
-              options={categories}
-            />
-          </FormControl>
+        <FormControl
+          borderColor="#131313ff"
+          borderRadius="md"
+        >
+          <Text as="span" >Project category:</Text>
+          <Select
+            styles={{ control: (styles) => ({ ...styles, borderColor: '#131313ff' }) }}
+            onChange={(option) => setCategory(option)}
+            options={categories}
+          />
+        </FormControl>
 
-          <Spacer my="20px" mx="auto" />
+        <Spacer my="20px" mx="auto" />
 
-          <FormControl
-            borderColor="#131313ff"
-            borderRadius="md"
-          >
-            <Text as="span">Assign to:</Text>
-            <Select
-              styles={{ control: (styles) => ({ ...styles, borderColor: '#131313ff' }) }}
-              onChange={(option) => setAssignedUsers(option)}
-              options={users}
-              isMulti
-            />
-          </FormControl>
+        <FormControl
+          borderColor="#131313ff"
+          borderRadius="md"
+        >
+          <Text as="span">Assign to:</Text>
+          <Select
+            styles={{ control: (styles) => ({ ...styles, borderColor: '#131313ff' }) }}
+            onChange={(option) => setAssignedUsers(option)}
+            options={users}
+            isMulti
+          />
+        </FormControl>
 
-          <Spacer my="10px" mx="auto" />
+        <Spacer my="10px" mx="auto" />
 
-          <Button type="submit" bg="#f59e9eff" colorScheme="pink" size="md" variant="solid" my="10px" mx="auto" left="40%">
-            Add 
-          </Button>
+        <Button type="submit" bg="#f59e9eff" colorScheme="pink" size="md" variant="solid" my="10px" mx="auto" left="40%">
+         {/* <Link to="/dashboard"> */}
+          Add
+          {/* </Link> */}
+         
+        </Button>
 
-          {formError && (
-            <Text color="red.500" fontSize="sm" mt="5px">
-              {formError}
-            </Text>
-          )}
+        {formError && (
+          <Text color="red.500" fontSize="sm" mt="5px">
+            {formError}
+          </Text>
+        )}
 
 
-        </Box>
       </Box>
+
     </Box>
+
   )
 }

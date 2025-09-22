@@ -3,7 +3,7 @@ import { useDocument } from '../../hooks/useDocument'
 
 // styles
 //import './Project.css'
-import { Grid } from '@chakra-ui/react';
+import { Flex, Grid } from '@chakra-ui/react';
 //components
 import ProjectSummary from "./ProjectSummary"
 import ProjectComments from "./ProjectComments"
@@ -23,9 +23,12 @@ export default function Project() {
   return (
 
     <Grid
-      templateColumns="3fr 2fr"
-      alignItems="start"
-      gap="60px"
+     templateColumns="2fr 1fr"
+     //alignItems="center"
+     gap="60px"
+     justifyItems="space-evenly"
+    
+      w="100%"
     >
       <ProjectSummary project={document} />
       <ProjectComments project={document} />

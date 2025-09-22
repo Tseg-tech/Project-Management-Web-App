@@ -48,12 +48,14 @@ export default function Dashboard() {
   }) : null
 
   return (
-    <Box my="110px" w="fit-content" >
-      <Heading
-        fontFamily="inherit"
-        fontWeight="bold"
-        fontSize="1.2em"
-      >
+    <Box my="110px" width="100%"
+      maxW="fit-content"
+      mx="auto"
+      mt={12}
+      padding="1rem"
+    >
+      <Heading size="md" textAlign="center">
+      
         Dashboard
       </Heading>
       {error && <Text >{error}</Text>}

@@ -19,7 +19,6 @@ import Welcome from './pages/welcomeboard/me'
 function App() {
   const { authIsReady, user } = useAuthContext()
 
-
   return (
     
     <Box
@@ -28,16 +27,19 @@ function App() {
       <Box display="flex">
         {authIsReady && (
           <BrowserRouter>
-            {/* {user && <Sidebar />} */}
+            {/* {user && <Navbar />} */}
             <Box flex="1" px="60px">
               <Navbar />
               
               <Switch>
                 <Route exact path="/">
                   {!user && <Redirect to="/welcomeboard"/>}
+                  {user && <Welcome />}
+                </Route>
+               <Route path="/dshboard">
+                  {!user && <Redirect to="/welcomeboard"/>}
                   {user && <Dashboard />}
                 </Route>
-               
                 <Route path="/create">
                   {!user && <Redirect to="/welcomeboard" />}
                   {user && <Create />}
