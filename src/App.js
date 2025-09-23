@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { useAuthContext } from './hooks/useAuthContext'
-import { Box , Text, Button} from '@chakra-ui/react';
+import { Box, Text, Button, Flex} from '@chakra-ui/react';
 
 // styles
 import './App.css'
@@ -20,24 +20,22 @@ function App() {
   const { authIsReady, user } = useAuthContext()
 
   return (
-    
-    <Box
-      minH="100vh"
-    >
-      <Box display="flex">
-        {authIsReady && (
-          <BrowserRouter>
-            {/* {user && <Navbar />} */}
-            <Box flex="1" px="60px">
-              <Navbar />
-              
+
+    <Box minH="100vh" display="flex" flexDirection="column">
+      {authIsReady && (
+        <BrowserRouter>
+          {/* Navbar + Content in flex box */}
+          <Flex flex="1" px={{ base: 4, md: 12 }} flexDirection="column">
+            <Navbar />
+            <Box flex="1" mt={4}>
+
               <Switch>
                 <Route exact path="/">
-                  {!user && <Redirect to="/welcomeboard"/>}
+                  {!user && <Redirect to="/welcomeboard" />}
                   {user && <Welcome />}
                 </Route>
-               <Route path="/dshboard">
-                  {!user && <Redirect to="/welcomeboard"/>}
+                <Route path="/dashboard">
+                  {!user && <Redirect to="/welcomeboard" />}
                   {user && <Dashboard />}
                 </Route>
                 <Route path="/create">
@@ -48,8 +46,8 @@ function App() {
                   {!user && <Redirect to="/welcomeboard" />}
                   {user && <Project />}
                 </Route>
-                 <Route path="/welcomeboard">
-                  {!user && <Welcome/>}
+                <Route path="/welcomeboard">
+                  {!user && <Welcome />}
                   {user && <Redirect to="/" />}
                 </Route>
                 <Route path="/login">
@@ -60,13 +58,13 @@ function App() {
                   {user && <Redirect to="/" />}
                   {!user && <Signup />}
                 </Route>
-              
+
               </Switch>
             </Box>
-            {user && <OnlineUsers />}
-          </BrowserRouter>
-        )}
-      </Box>
+          </Flex>
+          {user && <OnlineUsers />}
+        </BrowserRouter>
+      )}
     </Box>
   );
 }

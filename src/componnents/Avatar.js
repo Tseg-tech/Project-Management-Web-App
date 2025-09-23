@@ -4,22 +4,18 @@ import { Box, Img } from '@chakra-ui/react'
 export default function Avatar({ src }) {
   return (
     <Box
-      sx={{
-        display: "inline-block",
-        width: "50px",
-        height: "50px",
-        borderRadius: "50%",
-        overflow: "hidden"
-      }}
+      display="inline-block"
+      w="50px"
+      h="50px"
+      borderRadius="full"
+      overflow="hidden"
     >
       <Img
         src={src}
         alt="user avatar"
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover"
-        }}
+        width="100%"
+        height="100%"
+        objectFit="cover"
       />
     </Box>
   )

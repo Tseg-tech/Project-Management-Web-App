@@ -15,46 +15,50 @@ export default function ProjectSummary({ project }) {
   }
 
   return (
-    <Box >
-      <Box
-        bg="#f59e9eff"
-        p="30px"
-        borderRadius="4px"
-        mt="40px"
-      >
-        <Heading >{project.name}</Heading>
-        <Text
-          my="10px"
-          fontSize="0.9em"
-          color="var(--title-color)"
-        >
-          Project due by {project.dueDate.toDate().toDateString()}
-        </Text>
-        <Text
-          my="30px"
-          color="var(--text-color)"
-          lineHeight="1.8em"
-          fontSize="0.9em">
-          {project.details}
-        </Text>
-        <Heading
-          color="var(--text-color)"
-          fontSize="0.9em">
-          Project assigned to:
-        </Heading>
-        <Box display="flex" mt="20px">
-          {project.assignedUsersList.map(user => (
-            <Box key={user.id}>
-              <Avatar mr="10px" src={user.photoURL} />
-            </Box>
-          ))}
-        </Box>
-      </Box>
+    <Box>
+  <Box
+    bg="#f59e9e"
+    p={6}
+    borderRadius="md"
+    mt={10}
+  >
+    {/* Project Title */}
+    <Heading size="lg" mb={2}>
+      {project.name}
+    </Heading>
 
-      {user.uid === project.createdBy.id && (
-        <Button mt="20px" onClick={handleClick}>Mark as Complete</Button>
-      )}
+    {/* Due Date */}
+    <Text fontSize="sm" color="gray.600" mb={6}>
+      Project due by {project.dueDate.toDate().toDateString()}
+    </Text>
 
+    {/* Project Details */}
+    <Text fontSize="md" color="gray.700" mb={6} lineHeight="1.8">
+      {project.details}
+    </Text>
+
+    {/* Assigned Users */}
+    <Heading as="h3" size="sm" color="gray.700" mb={2}>
+      Project assigned to:
+    </Heading>
+    <Box display="flex" gap={4} mt={2} flexWrap="wrap">
+      {project.assignedUsersList.map((user) => (
+        <Avatar key={user.id} src={user.photoURL} name={user.displayName} />
+      ))}
     </Box>
+  </Box>
+
+  {/* Action Button for Project Creator */}
+  {user.uid === project.createdBy.id && (
+    <Button
+      mt={6}
+      colorScheme="green"
+      onClick={handleClick}
+    >
+      Mark as Complete
+    </Button>
+  )}
+</Box>
+
   )
 }

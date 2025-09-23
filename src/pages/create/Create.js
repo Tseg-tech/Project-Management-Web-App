@@ -6,7 +6,7 @@ import { timestamp } from '../../firebase/config'
 import { useFirestore } from '../../hooks/useFirestore'
 import { useHistory } from 'react-router'
 import Select from 'react-select'
-
+//import Dashboard from '../dashboard/Dashboard'
 // styles
 //import './Create.css'
 
@@ -20,7 +20,7 @@ import {
   Textarea,
   Button,
   Spacer,
-  AbsoluteCenter
+  AbsoluteCenter,FormLabel
 } from '@chakra-ui/react';
 
 const categories = [
@@ -95,118 +95,114 @@ export default function Create() {
 
     await addDocument(project)
     if (!response.error) {
-      history.push('/')
+      history.push('/dashboard')
     }
-    history.push('/dashboard');  // Navigate programmatically
+   // history.push('/dashboard');  // Navigate programmatically
   }
 
   return (
 
 
     <Box
-      width="100%"
-      maxW="400px"
-      mx="auto"
-      mt={12}
-      padding="1rem">
+  width="100%"
+  maxW="500px"
+  mx="auto"
+  mt={12}
+  p={4}
+  bg="white"
+  borderRadius="md"
+  boxShadow="md"
+>
+  <Box as="form" onSubmit={handleSubmit}>
+    <Heading size="md" textAlign="center" mb={6}>
+      Create Task
+    </Heading>
 
-      <Box as="form"
-        onSubmit={handleSubmit}
-        maxW="500px"
-        borderRadius="4px"
-        mx="auto"
+    {/* Project Name */}
+    <FormControl isRequired mb={4}>
+      <FormLabel>Project Name</FormLabel>
+      <Input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+    </FormControl>
 
+    {/* Project Details */}
+    <FormControl isRequired mb={4}>
+      <FormLabel>Project Details</FormLabel>
+      <Textarea
+        value={details}
+        onChange={(e) => setDetails(e.target.value)}
+      />
+    </FormControl>
+
+    {/* Due Date */}
+    <FormControl isRequired mb={4}>
+      <FormLabel>Set Due Date</FormLabel>
+      <Input
+        type="date"
+        value={dueDate}
+        onChange={(e) => setDueDate(e.target.value)}
+      />
+    </FormControl>
+
+    {/* Category (React Select) */}
+    <FormControl isRequired mb={4}>
+      <FormLabel>Project Category</FormLabel>
+      <Box
+        sx={{
+          ".chakra-react-select__control": {
+            borderColor: "#131313ff",
+          },
+        }}
       >
-        <Heading
-          size="md" textAlign="center"
-        >
-          Task
-        </Heading>
-        <FormControl
-          borderColor="#131313ff"
-          borderRadius="md"
-        >
-          <Text as="span">Project name:</Text>
-          <Input
-            isRequired
-            type="text"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          />
-        </FormControl  >
-        <Spacer my="20px" mx="auto" />
-        <FormControl
-          borderColor="#131313ff"
-          borderRadius="md"
-        >
-          <Text as="span">Project Details:</Text>
-          <Textarea
-            isRequired
-            onChange={(e) => setDetails(e.target.value)}
-            value={details}
-          ></Textarea>
-        </FormControl>
-        <Spacer my="20px" mx="auto" />
-        <FormControl
-        //borderColor="#131313ff"
-        //borderRadius="md"
-        >
-          <Text as="span">Set Duedate:</Text>
-          <Input
-            isRequired
-            type="date"
-            onChange={(e) => setDueDate(e.target.value)}
-            value={dueDate}
-          />
-        </FormControl>
-        <Spacer my="20px" mx="auto" />
-
-        <FormControl
-          borderColor="#131313ff"
-          borderRadius="md"
-        >
-          <Text as="span" >Project category:</Text>
-          <Select
-            styles={{ control: (styles) => ({ ...styles, borderColor: '#131313ff' }) }}
-            onChange={(option) => setCategory(option)}
-            options={categories}
-          />
-        </FormControl>
-
-        <Spacer my="20px" mx="auto" />
-
-        <FormControl
-          borderColor="#131313ff"
-          borderRadius="md"
-        >
-          <Text as="span">Assign to:</Text>
-          <Select
-            styles={{ control: (styles) => ({ ...styles, borderColor: '#131313ff' }) }}
-            onChange={(option) => setAssignedUsers(option)}
-            options={users}
-            isMulti
-          />
-        </FormControl>
-
-        <Spacer my="10px" mx="auto" />
-
-        <Button type="submit" bg="#f59e9eff" colorScheme="pink" size="md" variant="solid" my="10px" mx="auto" left="40%">
-         {/* <Link to="/dashboard"> */}
-          Add
-          {/* </Link> */}
-         
-        </Button>
-
-        {formError && (
-          <Text color="red.500" fontSize="sm" mt="5px">
-            {formError}
-          </Text>
-        )}
-
-
+        <Select
+          onChange={(option) => setCategory(option)}
+          options={categories}
+        />
       </Box>
+    </FormControl>
 
-    </Box>
+    {/* Assigned Users (React Select Multi) */}
+    <FormControl isRequired mb={4}>
+      <FormLabel>Assign To</FormLabel>
+      <Box
+        sx={{
+          ".chakra-react-select__control": {
+            borderColor: "#131313ff",
+          },
+        }}
+      >
+        <Select
+          isMulti
+          onChange={(option) => setAssignedUsers(option)}
+          options={users}
+        />
+      </Box>
+    </FormControl>
+
+    {/* Submit Button */}
+    <Button
+      type="submit"
+      bg="#f59e9e"
+      color="white"
+      _hover={{ bg: "#f77c7c" }}
+      width="full"
+      mt={4}
+    >
+      Add
+    </Button>
+
+    {/* Error Message */}
+    {formError && (
+      <Text color="red.500" fontSize="sm" mt={2} textAlign="center">
+        {formError}
+      </Text>
+    )}
+  </Box>
+</Box>
+
 
   )
 }

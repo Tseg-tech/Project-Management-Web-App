@@ -23,15 +23,14 @@ export default function Project() {
   return (
 
     <Grid
-     templateColumns="2fr 1fr"
-     //alignItems="center"
-     gap="60px"
-     justifyItems="space-evenly"
-    
+      templateColumns={{ base: "1fr", md: "2fr 1fr" }}
+      alignItems="start"
+      gap={8}
       w="100%"
     >
       <ProjectSummary project={document} />
       <ProjectComments project={document} />
     </Grid>
+    
   )
 }

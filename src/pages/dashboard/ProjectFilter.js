@@ -12,41 +12,42 @@ export default function ProjectFilter({ changeFilter }) {
   }
 
   return (
-    <Box
-      my="20px" mx="auto"
-    >
-      <Box as="nav"
+    <Box my="20px" mx="auto">
+      <Box
+        as="nav"
         my="20px"
         mx="auto"
         display="flex"
+        flexWrap="wrap"
         justifyContent="space-evenly"
+        alignItems="center"  // ✅ lowercase 'center'
         p="10px"
-        bg="#f59e9eff"
+        bg="#f59e9e"
         borderRadius="4px"
-        alignItems="Center"
-        
+        gap="8px"  // Adds spacing between children instead of using border-right logic
+        flexDirection={{ base: "column", sm: "row" }} // Responsive layout
       >
-        <Text fontSize="0.9em" mr="10px" alignItems="Center">Filter by: </Text>
-        {filterList.map((f, index) => (
+        <Text fontSize="0.9em" mr={{ base: 0, sm: "10px" }} mb={{ base: "6px", sm: 0 }}>
+          Filter by:
+        </Text>
+
+        {filterList.map((f) => (
           <Button
             key={f}
             onClick={() => handleClick(f)}
-            background="transparent"
-            border="0"
-            fontFamily="inherit"
+            variant="ghost"
             fontWeight="bold"
-            cursor="pointer"
-            borderRight={index === filterList.length - 1 ? "0" : "1px solid #e4e4e4"}
             fontSize="0.9em"
-            color={currentFilter === f ? "var(--primary-color)" : "var(--text-color)"}
-            _hover={{ bg: "transparent" }}
+            color={currentFilter === f ? "blue.500" : "gray.700"}
+            _hover={{ bg: "transparent", color: "blue.600" }}
             px="8px"
             py="4px"
           >
             {f}
           </Button>
         ))}
-      </Box >
+      </Box>
     </Box>
+
   )
 }

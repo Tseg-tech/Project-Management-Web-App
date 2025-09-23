@@ -23,32 +23,30 @@ export default function OnlineUsers() {
         aria-label="Toggle"
         position="fixed"
         bottom="20px"
-        right="20px"
+        right={{ base: "10px", md: "20px" }}
         size="lg"
         borderRadius="full"
-        colorScheme='pink'
+        colorScheme="pink"
         bg="#f59e9eff"
+        zIndex="1100"
       />
-
 
       {/* User List Box */}
       {isOpen && (
         <Box
           position="fixed"
-          bottom="80px" // slightly above the button
-          right="20px"
-          w="fit-content"
+          bottom={{ base: "70px", md: "80px" }} // slightly above the button, a bit closer on small screens
+          right={{ base: "10px", md: "20px" }}
+          w={{ base: "90vw", sm: "400px", md: "auto" }}
           maxW="90vw"
-          p="30px"
-          //bg="#c8f078ff"
+          p={{ base: "20px", md: "30px" }}
           bg="#f59e9eff"
           color="var(--heading-color)"
           borderRadius="10px"
           boxShadow="md"
           zIndex="1000"
-          //display="grid"
-           //columnGap="20px"
-
+          overflowY="auto"
+          maxH={{ base: "50vh", md: "auto" }} // max height and scroll on small devices
         >
           <Heading
             textAlign="center"
@@ -57,7 +55,7 @@ export default function OnlineUsers() {
             borderBottom="1px solid #eeeeee"
             fontSize="1.2em"
           >
-             Users
+            Users
           </Heading>
 
           {isPending && <Spinner size="sm" color="green.500" />}
@@ -71,7 +69,6 @@ export default function OnlineUsers() {
                 alignItems="center"
                 justifyContent="flex-end"
                 mb="12px"
-
               >
                 {user.online && (
                   <Box
@@ -84,17 +81,15 @@ export default function OnlineUsers() {
                     borderRadius="50%"
                   />
                 )}
-                <Text mr="10px">{user.displayName}</Text>
-                <Avatar
-                  src={user.photoURL}
-                  ml="10px"
-                  w="40px"
-                  h="40px"
-                />
+                <Text mr="10px" isTruncated maxW="150px">
+                  {user.displayName}
+                </Text>
+                <Avatar src={user.photoURL} ml="10px" w="40px" h="40px" />
               </Box>
             ))}
         </Box>
       )}
     </>
+
   )
 }

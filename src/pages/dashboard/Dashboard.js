@@ -48,17 +48,19 @@ export default function Dashboard() {
   }) : null
 
   return (
-    <Box my="110px" width="100%"
-      maxW="fit-content"
-      mx="auto"
-      mt={12}
-      padding="1rem"
+
+    <Box w="100%"
+      maxW="1200px"       // Use a sensible max width
+      mx="auto"            // Center the box horizontally
+      my="110px"           // Vertical margin
+      mt={12}              // You can keep one or the other
+      p={4}                // Padding (equivalent to padding="1rem")
     >
-      <Heading size="md" textAlign="center">
-      
+      <Heading size="md" textAlign="center" mb={6}>
+
         Dashboard
       </Heading>
-      {error && <Text >{error}</Text>}
+      {error && <Text  textAlign="center" >{error}</Text>}
       {documents && <ProjectFilter changeFilter={changeFilter} />}
       {projects && <ProjectList projects={projects} />}
     </Box>
