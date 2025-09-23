@@ -15,6 +15,7 @@ import {
   VStack,
   HStack,
   Stack,
+
   UnorderedList, Img,
   Separator,
   Text,
@@ -28,6 +29,7 @@ import {
   useDisclosure,
   Image, IconButton,
   AbsoluteCenter,
+
 } from '@chakra-ui/react';
 
 import HamburgerIconImg from '../assets/hamburger-menu.svg'; // or .png/.jpg
@@ -47,9 +49,9 @@ export default function Navbar() {
   const location = useLocation();
   const path = location.pathname;
   const isActive = (path) => location.pathname === path;
-  const { isOpen, onToggle } = useDisclosure();
+  // const { isOpen, onToggle } = useDisclosure();
   const [clicked, setClicked] = useState(false);
-
+  const [isOpen, setIsOpen] = useState(false);
   const handleClick = () => {
     setClicked(true);
   };
@@ -64,7 +66,7 @@ export default function Navbar() {
       px={6}
       py={4}
       position="relative"
-      // borderRadius="md"
+    // borderRadius="md"
     >
 
 
@@ -84,13 +86,13 @@ export default function Navbar() {
               as={RouterLink}
               to="/welcomeboard"
               _hover={{ textDecoration: "none", color: "blue.500" }}
-               _focus={{ boxShadow: "none", outline: "none" }} 
+              _focus={{ boxShadow: "none", outline: "none" }}
             >
               <Text
                 fontWeight="bold"
                 fontSize="xl"
                 borderBottom={isActive("/welcomeboard", path) ? "2px solid green" : "none"}
-                 _focus={{ boxShadow: "none", outline: "none" }} 
+                _focus={{ boxShadow: "none", outline: "none" }}
               >
                 DMP
               </Text>
@@ -102,7 +104,7 @@ export default function Navbar() {
               to="/login"
               borderBottom={isActive("/login", path) ? "2px solid green" : "none"}
               _hover={{ color: "blue.500", textDecoration: "none" }}
-               _focus={{ boxShadow: "none", outline: "none" }} 
+              _focus={{ boxShadow: "none", outline: "none" }}
             >
               Login
             </ChakraLink>
@@ -111,7 +113,7 @@ export default function Navbar() {
               to="/signup"
               borderBottom={isActive("/signup", path) ? "2px solid green" : "none"}
               _hover={{ color: "blue.500", textDecoration: "none" }}
-               _focus={{ boxShadow: "none", outline: "none" }} 
+              _focus={{ boxShadow: "none", outline: "none" }}
             >
               Sign up
             </ChakraLink>
@@ -133,7 +135,7 @@ export default function Navbar() {
               as={RouterLink}
               to="/dashboard"
               _hover={{ textDecoration: "none", color: "blue.500" }}
-               _focus={{ boxShadow: "none", outline: "none" }} 
+              _focus={{ boxShadow: "none", outline: "none" }}
             >
               <Flex align="center" gap={2} >
                 <Image src={DashboardIcon} alt="dashboard icon" boxSize="24px" />
@@ -145,12 +147,13 @@ export default function Navbar() {
               </Flex>
             </ChakraLink>
           </HStack>
+
           <HStack spacing={4}>
             <ChakraLink
               as={RouterLink}
               to="/create"
               _hover={{ textDecoration: "none", color: "blue.500" }}
-               _focus={{ boxShadow: "none", outline: "none" }} 
+              _focus={{ boxShadow: "none", outline: "none" }}
             >
               <Flex align="center" gap={2}>
                 <Image src={AddIcon} alt="add project icon" boxSize="24px" />
@@ -161,21 +164,58 @@ export default function Navbar() {
                 </Text>
               </Flex>
             </ChakraLink>
-          
-
-          {/* User Info + Logout */}
-        
+            {/* <HStack> */}
             <Text>{user.displayName}</Text>
-            <Avatar size="sm" src={user.photoURL} />
-            <Button
-              colorScheme="green"
-              onClick={logout}
-              isLoading={isPending}
-              loadingText="Logging out..."
-            >
-              Logout
-            </Button>
+            {/* </HStack> */}
+            <HStack>
+              <IconButton
+                icon={<span>{<Avatar size="sm" src={user.photoURL} />}</span>}
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label="Toggle"
+
+                //right={{ base: "10px", md: "20px" }}
+                size="lg"
+                borderRadius="full"
+                colorScheme="white"
+
+                zIndex="1100"
+                _focus={{ boxShadow: "none", outline: "none" }}
+              />
+            </HStack>
+
+            {isOpen && (
+              <Box
+                position="absolute"
+                top="100%"         // Drop straight below the icon
+                right="0"          // Align right edges
+                mt="10px"          // Small spacing from the button
+                w="260px"
+                p="5px"
+                _focus={{ boxShadow: "none", outline: "none" }}
+
+              >
+                <Text size="sm" mb="10px" textAlign="center">
+                  you are about to signout
+                </Text>
+                {/* User Info + Logout */}
+                <Box display="grid" alignItems="center" justifyContent="center">
+                  {/* <Box > */}
+                  <Button
+                    colorScheme="green"
+                    onClick={logout}
+                    isLoading={isPending}
+                    loadingText="Logging out..."
+                    _focus={{ boxShadow: "none", outline: "none" }}
+                  >
+                    Logout
+                  </Button>
+                  {/* </Box> */}
+                </Box>
+
+              </Box>
+            )}
           </HStack>
+
         </Flex>
         // </Flex>
       )}
