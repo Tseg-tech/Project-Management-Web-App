@@ -2,11 +2,12 @@ import { useParams } from "react-router-dom"
 import { useDocument } from '../../hooks/useDocument'
 
 // styles
-import './Project.css'
-
+//import './Project.css'
+import { Flex, Grid } from '@chakra-ui/react';
 //components
 import ProjectSummary from "./ProjectSummary"
 import ProjectComments from "./ProjectComments"
+//import { Box } from "@chakra-ui/react"
 
 export default function Project() {
   const { id } = useParams()
@@ -20,9 +21,16 @@ export default function Project() {
   }
 
   return (
-    <div className="project-details">
+
+    <Grid
+      templateColumns={{ base: "1fr", md: "2fr 1fr" }}
+      alignItems="start"
+      gap={8}
+      w="100%"
+    >
       <ProjectSummary project={document} />
-      <ProjectComments project={document} /> 
-    </div>
+      <ProjectComments project={document} />
+    </Grid>
+    
   )
 }

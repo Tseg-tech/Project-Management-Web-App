@@ -12,10 +12,11 @@ import {
   Spinner,
   Alert,
   AlertIcon,
-  InputGroup,Popover,
-   Portal, 
-   Text, 
-   Theme,
+  InputGroup, Popover,
+  Portal,
+  Text,
+  Theme,
+  Stack
 } from '@chakra-ui/react';
 import { MdOutlineMail } from "react-icons/md";
 // styles
@@ -32,27 +33,26 @@ export default function Login() {
   }
 
   return (
-    
+<Stack direction={{ base: "column", md: "row" }} gap="10">
     <Box
+      width="100%"
       maxW="400px"
       mx="auto"
       mt={12}
-      p={6}
-      bg="rgba(255, 255, 255, 0.1)"  // light transparent white
-      backdropFilter="blur(10px)"    // adds blur effect (like glass)
-      borderWidth="1px"
-      borderColor="gray.200"
-      borderRadius="md"
-      boxShadow="md"
-      //bgImage="url('/tseg.jpg')"
-      bgSize="100% 100%"
-      bgPosition="center"
-      bgRepeat="no-repeat"
+      padding= "1rem"
+      // p={6}
+      // bg="rgba(255, 255, 255, 0.1)"  // light transparent white
+      // backdropFilter="blur(10px)"    // adds blur effect (like glass)
+      // borderWidth="1px"
+      // borderColor="gray.200"
+      // borderRadius="md"
+      // boxShadow="md"
+     
     >
       <form onSubmit={handleSubmit}>
-        <VStack spacing={5}>
-          <Heading size="lg" textAlign="center">
-            Login
+        {/* <VStack spacing={5}> */}
+          <Heading size="lg" textAlign="center" >
+            Welcome!
           </Heading>
 
           <FormControl id="email" isRequired>
@@ -71,18 +71,20 @@ export default function Login() {
             <FormLabel>Password</FormLabel>
             <Input
               type="password"
+              placeholder="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </FormControl>
 
           <Button
+            mt="10px"
             type="submit"
             colorScheme="teal"
-            width="full"
-            isLoading={isPending}
-            loadingText="Loading"
-          >
+            bg="green"
+            variant="surface"
+            color="white"
+            >
             Log in
           </Button>
 
@@ -92,8 +94,9 @@ export default function Login() {
               {error}
             </Alert>
           )}
-        </VStack>
+        {/* </VStack> */}
       </form>
     </Box>
+    </Stack>
   )
 }

@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useRef, useState } from "react";
+
 import { useSignup } from '../../hooks/useSignup'
 import {
   Box,
@@ -8,14 +9,18 @@ import {
   Input,
   Heading,
   Text,
-  VStack,
+  // VStack,
   Spinner,
   Alert,
   AlertIcon,
+  FileUpload,
   InputGroup,
+  InputRightElement,
+  FormErrorMessage,
+  InputLeftElement,
 } from '@chakra-ui/react';
 import { MdOutlineMail } from "react-icons/md";
-import { HiUpload } from "react-icons/hi"
+import { HiArrowCircleUp } from "react-icons/hi"
 // styles
 //import './Signup.css'
 
@@ -26,6 +31,9 @@ export default function Signup() {
   const [thumbnail, setThumbnail] = useState(null)
   const [thumbnailError, setThumbnailError] = useState(null)
   const { signup, isPending, error } = useSignup()
+
+  const inputRef = useRef();
+  const [fileName, setFileName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -55,74 +63,112 @@ export default function Signup() {
     console.log('thumbnail updated')
   }
 
+  const onFileChange = (e) => {
+    const file = e.target.files[0];
+    setFileName(file?.name || "");
+    handleFileChange(e); // Call the parent handler
+  }
+
   return (
     <Box
+      width="100%"
       maxW="400px"
       mx="auto"
       mt={12}
-      p={6}
-      bg="rgba(255, 255, 255, 0.1)"  // light transparent white
-      backdropFilter="blur(10px)"    // adds blur effect (like glass)
-      borderWidth="1px"
-      borderColor="gray.200"
-      borderRadius="md"
-      boxShadow="md"
+      padding="1rem"
+    // p={6}
+    // bg="rgba(255, 255, 255, 0.1)"  // light transparent white
+    // backdropFilter="blur(10px)"    // adds blur effect (like glass)
+    // borderWidth="1px"
+    // borderColor="gray.200"
+    // borderRadius="md"
+    // boxShadow="md"
     >
       <form onSubmit={handleSubmit} >
-        <VStack spacing={5}>
-          <Heading size="lg" textAlign="center" >Sign Up</Heading>
-          <FormControl id="email" isRequired>
-            <FormLabel>Email</FormLabel>
-            <InputGroup startElement={<MdOutlineMail />}>
-              <Input
-                type="email"
-                placeholder="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </InputGroup>
-          </FormControl>
-          <FormControl id="password" isRequired>
-            <FormLabel>Password</FormLabel>
+        {/* <VStack spacing={5}> */}
+        <Heading size="lg" textAlign="center" > Welcome!</Heading>
+        <FormControl id="email" isRequired>
+          <FormLabel>Email</FormLabel>
+          <InputGroup startElement={<MdOutlineMail />}>
             <Input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-          </FormControl>
+          </InputGroup>
+        </FormControl>
+        <FormControl id="password" isRequired>
+          <FormLabel>Password</FormLabel>
+          <Input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </FormControl>
 
-          <FormControl id="text" isRequired>
-            <FormLabel>Display Name</FormLabel>
-            <Input
-              type="text"
-              onChange={(e) => setDisplayName(e.target.value)}
-              value={displayName}
-            />
-          </FormControl>
+        <FormControl id="text" isRequired>
+          <FormLabel>Display Name</FormLabel>
+          <Input
+            type="text"
+            placeholder="userName"
+            onChange={(e) => setDisplayName(e.target.value)}
+            value={displayName}
+          />
+        </FormControl>
 
-          <FormControl id="file" isRequired>
-            <span>Profile Thumbnail:</span>
-            <InputGroup startElement={<HiUpload />}>
-              <Input
-                type="file"
-                onChange={handleFileChange}
+        <FormControl isRequired isInvalid={!!thumbnailError}>
+          <FormLabel>Profile Thumbnail:</FormLabel>
+
+          <input
+            type="file"
+            ref={inputRef}
+            onChange={onFileChange}
+            style={{ display: "none" }}
+          />
+          <InputGroup >
+             <Input
+                placeholder="Upload a file"
+                value={fileName || ""}
+                isReadOnly
               />
-            </InputGroup>
-            {thumbnailError && <div className="error">{thumbnailError}</div>}
-          </FormControl>
 
-          <Button
-            type="submit"
-            colorScheme="teal"
-            width="full"
-            isLoading={isPending}
-            loadingText="Loading"
-          >
-            Sign up
-          </Button>
+            <InputRightElement>
+              <Button
+              leftIcon={<HiArrowCircleUp color="green"/>}
+              onClick={() => inputRef.current.click()}
+              colorScheme="black"
+              variant="outline"
+              size="sm"
+              border="none"
+            >
+            </Button>
+            </InputRightElement>
+          </InputGroup>
 
-          {error && <div className="error">{error}</div>}
-        </VStack>
+
+          {thumbnailError && (
+            <FormErrorMessage>{thumbnailError}</FormErrorMessage>
+          )}
+        </FormControl>
+
+        <Button
+          type="submit"
+          colorScheme="teal"
+          bg="green"
+          variant="surface"
+          color="white"
+          mt="10px"
+          //  width="full"
+          isLoading={isPending}
+          loadingText="Loading"
+        >
+          Sign up
+        </Button>
+
+        {error && <div className="error">{error}</div>}
+        {/* </VStack> */}
       </form>
     </Box>
   )
