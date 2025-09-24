@@ -4,6 +4,9 @@ import { useAuthContext } from '../hooks/useAuthContext'
 import { NavLink } from "react-router-dom"
 import { css } from '@emotion/react'
 import Avatar from "./Avatar"
+
+import { useRef, useEffect } from "react";
+
 //import Dashboard from './pages/dashboard/Dashboard'
 // styles & images  <img src={Temple} alt="dojo logo" />
 //import './Navbar.css'
@@ -48,6 +51,7 @@ export default function Navbar() {
 
   const location = useLocation();
   const path = location.pathname;
+
   const isActive = (path) => location.pathname === path;
   // const { isOpen, onToggle } = useDisclosure();
   const [clicked, setClicked] = useState(false);
@@ -55,6 +59,20 @@ export default function Navbar() {
   const handleClick = () => {
     setClicked(true);
   };
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     //<Stack direction={{ base: "column", md: "row" }} gap="10">
@@ -165,62 +183,80 @@ export default function Navbar() {
               </Flex>
             </ChakraLink>
             {/* <HStack> */}
-            <Text>{user.displayName}</Text>
+            {/* <Text borderBottom={isOpen ? "2px solid green" : "none"}>{user.displayName}</Text> */}
             {/* </HStack> */}
-            <HStack>
-              <IconButton
-                icon={<span>{<Avatar size="sm" src={user.photoURL} />}</span>}
-                onClick={() => setIsOpen(!isOpen)}
-                aria-label="Toggle"
+            <Box ref={dropdownRef}>
+              <HStack>
+                <IconButton
+                  icon={<span>{<Avatar size="sm" src={user.photoURL} />}</span>}
+                  onClick={() => setIsOpen(!isOpen)}
+                  aria-label="Toggle"
 
-                //right={{ base: "10px", md: "20px" }}
-                size="lg"
-                borderRadius="full"
-                colorScheme="white"
+                  //right={{ base: "10px", md: "20px" }}
+                  size="lg"
+                  border={isOpen ? "2px solid white" : "none"}
+                  borderRadius="full"
+                  colorScheme="white"
+                  
+                  zIndex="1100"
+                  _focus={{ boxShadow: "none", outline: "none" }}
+                />
+              </HStack>
 
-                zIndex="1100"
-                _focus={{ boxShadow: "none", outline: "none" }}
-              />
-            </HStack>
+              {isOpen && (
+                <Box
+                  position="absolute"
+                  top="100%"         // Drop straight below the icon
+                  right="0"          // Align right edges
+                  w="260px"
+                 _hover={{ textDecoration: "none", color: "blue.500" }}
+                  _focus={{ boxShadow: "none", outline: "none" }}
 
-            {isOpen && (
-              <Box
-                position="absolute"
-                top="100%"         // Drop straight below the icon
-                right="0"          // Align right edges
-                mt="10px"          // Small spacing from the button
-                w="260px"
-                p="5px"
-                _focus={{ boxShadow: "none", outline: "none" }}
+                >
+                  <Flex justify="center" >
+                  <Text size="sm" display="inline-block"  >
+                    Hi,<Text display="inline-block" borderBottom={isOpen ? "2px solid black" : "none"}> {user.displayName}!</Text>
+                  </Text>
+                  </Flex>
+                  {/* User Info + Logout */}
+                  <Box display="grid" alignItems="center" justifyContent="center">
+                    {/* <Box > */}
+                    <Button
+                      w="fit-content"
+                      colorScheme="transparent"
+                      color="black"
+                      mb="10px"
+                    >
+                      manage your account
+                    </Button>
+                    <Button
+                      ml="50px"
+                      mr="50px"
+                      w="fit-content"
+                      colorScheme="teal"
+                      onClick={logout}
+                      isLoading={isPending}
+                      loadingText="Logging out..."
+                      _focus={{ boxShadow: "none", outline: "none" }}
+                    >
+                      Logout
+                    </Button>
+                    {/* </Box> */}
+                  </Box>
 
-              >
-                <Text size="sm" mb="10px" textAlign="center">
-                  you are about to signout
-                </Text>
-                {/* User Info + Logout */}
-                <Box display="grid" alignItems="center" justifyContent="center">
-                  {/* <Box > */}
-                  <Button
-                    colorScheme="green"
-                    onClick={logout}
-                    isLoading={isPending}
-                    loadingText="Logging out..."
-                    _focus={{ boxShadow: "none", outline: "none" }}
-                  >
-                    Logout
-                  </Button>
-                  {/* </Box> */}
                 </Box>
-
+              )}
               </Box>
-            )}
           </HStack>
-
+        
+         
         </Flex>
-        // </Flex>
-      )}
+    // </Flex>
+  )
+}
 
-    </Box>
+
+    </Box >
 
   )
 }
