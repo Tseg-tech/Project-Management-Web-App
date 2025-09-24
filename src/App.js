@@ -51,11 +51,11 @@ function App() {
                   {user && <Redirect to="/" />}
                 </Route>
                 <Route path="/login">
-                  {user && <Redirect to="/" />}
+                  {user && <Redirect to="/dashboard" />}
                   {!user && <Login />}
                 </Route>
                 <Route path="/signup">
-                  {user && <Redirect to="/" />}
+                  {user && <Redirect to="/dashboard"/>}
                   {!user && <Signup />}
                 </Route>
 

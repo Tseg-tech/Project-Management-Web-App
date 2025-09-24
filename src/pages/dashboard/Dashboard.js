@@ -24,6 +24,7 @@ export default function Dashboard() {
     setFilter(newFilter)
   }
 
+
   const projects = documents ? documents.filter(document => {
     switch (filter) {
       case 'all':
@@ -42,6 +43,11 @@ export default function Dashboard() {
       case 'marketing':
         console.log(document.category, filter)
         return document.category === filter
+      case 'history':
+        
+
+        return false
+
       default:
         return true
     }
@@ -60,7 +66,7 @@ export default function Dashboard() {
 
         Dashboard
       </Heading>
-      {error && <Text  textAlign="center" >{error}</Text>}
+      {error && <Text textAlign="center" >{error}</Text>}
       {documents && <ProjectFilter changeFilter={changeFilter} />}
       {projects && <ProjectList projects={projects} />}
     </Box>

@@ -2,17 +2,19 @@ import Avatar from "../../componnents/Avatar"
 import { useFirestore } from "../../hooks/useFirestore"
 import { useHistory } from 'react-router-dom'
 import { useAuthContext } from "../../hooks/useAuthContext"
-import { Box, Button, Heading, Text, AbsoluteCenter } from "@chakra-ui/react"
+import { Box, Button, Heading, Text,  } from "@chakra-ui/react"
 
 export default function ProjectSummary({ project }) {
-  const { deleteDocument } = useFirestore('projects')
+  const { deleteDocument, response } = useFirestore('projects')
   const { user } = useAuthContext()
   const history = useHistory()
 
   const handleClick = () => {
     deleteDocument(project.id)
-    history.push('/')
+    
+    history.push('/dashboard')
   }
+  
 
   return (
     <Box>

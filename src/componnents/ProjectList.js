@@ -33,16 +33,16 @@ export default function ProjectList({ projects }) {
             color="inherit"
             _hover={{ bg: "#f77c7c" }}
           >
-            <Heading fontSize="0.9em" color="var(--heading-color)">
+            <Heading fontSize="0.9em" color="#080808">
               {project.name}
             </Heading>
 
-            <Text color="var(--text-color)" fontSize="0.9em">
+            <Text color="#080808" fontSize="0.9em">
               Due by {project.dueDate.toDate().toDateString()}
             </Text>
 
-            <Box mt="20px" pt="10px" borderTop="1px solid #101010" borderRadius="6px">
-              <Text color="var(--text-color)" fontSize="0.9em" mb="10px">
+            <Box mt="20px" pt="10px" borderTop="1px solid #101010" borderRadius="6px" display="flex" alignItems="center">
+              <Text color="#080808)" fontSize="0.9em"  mr="10px">
                 <strong>Assigned to:</strong>
               </Text>
 
@@ -60,11 +60,11 @@ export default function ProjectList({ projects }) {
                     display="flex"
                     alignItems="center"
                     mr="10px"
-                    fontWeight="bold"
-                    color="var(--text-color)"
+                    fontWeight="normal"
+                    color="#080808"
                   >
-                    <Text mr="10px">{user.displayName}</Text>
-                    <Avatar src={user.photoURL} boxSize="30px" />
+                    <Text display="inline-block" mr="10px" fontSize="0.9em">{user.displayName}</Text>
+                    {/* <Avatar src={user.photoURL} boxSize="30px" /> */}
                   </ListItem>
                 ))}
               </UnorderedList>
