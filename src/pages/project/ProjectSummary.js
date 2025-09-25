@@ -5,21 +5,33 @@ import { useAuthContext } from "../../hooks/useAuthContext"
 import { Box, Button, Heading, Text,  } from "@chakra-ui/react"
 
 export default function ProjectSummary({ project }) {
-  const { deleteDocument, response } = useFirestore('projects')
+  const { deleteDocument} = useFirestore('projects')
   const { user } = useAuthContext()
   const history = useHistory()
-
-  const handleClick = () => {
-    deleteDocument(project.id)
+    const { updateDocument, response } = useFirestore('projects')
+  // const handleClick = () => {
+  //   deleteDocument(project.id)
     
-    history.push('/dashboard')
+  //   history.push('/dashboard')
+  // }
+  const handleClick = async () => {
+  try {
+    await updateDocument(project.id, {
+      status: "completed",
+      completedAt: new Date()
+    });
+    
+    history.push('/dashboard');
+  } catch (err) {
+    console.error("Failed to mark project as complete:", err);
   }
+};
   
 
   return (
     <Box>
   <Box
-    bg="#f59e9e"
+    bg="#f77c7c"
     p={6}
     borderRadius="md"
     mt={10}

@@ -26,32 +26,31 @@ export default function Dashboard() {
 
 
   const projects = documents ? documents.filter(document => {
-    switch (filter) {
-      case 'all':
-        return true
-      case 'mine':
-        let assignedToMe = false
-        document.assignedUsersList.forEach(u => {
-          if (u.id === user.uid) {
-            assignedToMe = true
-          }
-        })
-        return assignedToMe
-      case 'development':
-      case 'design':
-      case 'sales':
-      case 'marketing':
-        console.log(document.category, filter)
-        return document.category === filter
-      case 'history':
-        
+  // ✅ Remove completed projects from all filters *except* "history"
+  if (filter !== 'history' && document.status === 'completed') return false;
 
-        return false
+  // ✅ Now handle filters
+  switch (filter) {
+    case 'all':
+      return true;
 
-      default:
-        return true
-    }
-  }) : null
+    case 'mine':
+      return document.assignedUsersList.some(u => u.id === user.uid);
+
+    case 'development':
+    case 'design':
+    case 'sales':
+    case 'marketing':
+      return document.category === filter;
+
+    case 'history':
+      return document.status === 'completed' && document.createdBy.id === user.uid;
+
+    default:
+      return true;
+  }
+}) : null;
+
 
   return (
 

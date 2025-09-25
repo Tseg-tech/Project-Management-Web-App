@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import ChatMessage from '../pages/chatmessage/chatMessage'
 import {
   Box,
   Heading,
   Text,
   Spinner,
   IconButton,
+  Button,
 } from '@chakra-ui/react';
 
 import { useCollection } from '../hooks/useCollection';
@@ -14,8 +16,19 @@ export default function OnlineUsers() {
   const { isPending, error, documents } = useCollection('users');
   const [isOpen, setIsOpen] = useState(false);
 
+ const [clicked, setClicked] = useState(false);
+ 
+   
+ const message ="hello" 
+
+  const handleClick = (message) => {
+      setClicked(prev => !prev);
+     console.log( <ChatMessage />)
+    };
   return (
     <>
+    {/* <Button onclick={ setClicked() }/> */}
+     {/* <Button onClick= {handleClick }>{clicked ? 'Clicked!' : 'Click me'}</Button> */}
       {/* Toggle Button */}
       <IconButton
         icon={<span>{isOpen ? '🙈' : '👁️'}</span>}
@@ -27,12 +40,13 @@ export default function OnlineUsers() {
         size="lg"
         borderRadius="full"
         colorScheme="pink"
-        bg="#f59e9eff"
+        bg="#f77c7c"
         zIndex="1100"
       />
-
+      
       {/* User List Box */}
       {isOpen && (
+       
         <Box
           position="fixed"
           bottom={{ base: "70px", md: "80px" }} // slightly above the button, a bit closer on small screens
@@ -40,8 +54,8 @@ export default function OnlineUsers() {
           w={{ base: "90vw", sm: "400px", md: "auto" }}
           maxW="90vw"
           p={{ base: "20px", md: "30px" }}
-          bg="#f59e9eff"
-          color="var(--heading-color)"
+          bg="#f77c7c"
+          color="#080808"
           borderRadius="10px"
           boxShadow="md"
           zIndex="1000"
@@ -81,10 +95,13 @@ export default function OnlineUsers() {
                     borderRadius="50%"
                   />
                 )}
-                <Text mr="10px" isTruncated maxW="150px">
+                {/* <Button onclick={ setClicked() }> */}
+                <Text color="#080808" mr="10px" isTruncated maxW="150px">
                   {user.displayName}
                 </Text>
-                <Avatar src={user.photoURL} ml="10px" w="40px" h="40px" />
+                <Avatar src={user.photoURL} size="sm" ml="10px" w="40px" h="40px" />
+                {/* </Button> */}
+
               </Box>
             ))}
         </Box>

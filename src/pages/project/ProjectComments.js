@@ -79,7 +79,7 @@ export default function ProjectComments({ project }) {
                 borderColor={isSelected ? "blue.400" : "#f2f2f2"}
                 mt="20px"
                 boxShadow="3px 3px 5px rgba(0,0,0,0.05)"
-                bg={isSelected ? "#bee3f8" : "#f59e9eff"}
+                bg={isSelected ? "#bee3f8" : "#f77c7c"}
                 cursor="pointer"
                 onClick={() =>
                   setSelectedCommentId(
@@ -105,12 +105,12 @@ export default function ProjectComments({ project }) {
                   </Button>
                 )}
 
-                <Box display="flex" alignItems="center" color="var(--title-color)">
+                <Box display="flex" alignItems="center" color="#080808">
                   <Avatar boxSize="30px" mr="10px" src={comment.photoURL} />
                   <Text>{comment.displayName}</Text>
                 </Box>
 
-                <Box color="var(--text-color)" fontSize="0.9em" mt="4px" mb="10px">
+                <Box color="#080808" fontSize="0.9em" mt="4px" mb="10px">
                   <Text>
                     {formatDistanceToNow(comment.createdAt.toDate(), {
                       addSuffix: true,
@@ -118,7 +118,7 @@ export default function ProjectComments({ project }) {
                   </Text>
                 </Box>
 
-                <Box color="var(--text-color)" fontSize="0.9em">
+                <Box color="#080808" fontSize="0.9em">
                   <Text>{comment.content}</Text>
                 </Box>
               </ListItem>
@@ -139,18 +139,18 @@ export default function ProjectComments({ project }) {
         </FormLabel>
 
         <Flex mt="20px" gap="10px">
-          <Button type="submit" bg="#f59e9eff">
+          <Button type="submit" bg="#f77c7c">
             Submit
           </Button>
           <Button
             type="button"
-            bg="red.300"
+            bg="#f77c7c"
             onClick={() => setNewComment("")}
           >
-            Cancel
-          </Button>
-        </Flex>
-      </Box>
+          Cancel
+        </Button>
+      </Flex>
     </Box>
+    </Box >
   )
 }

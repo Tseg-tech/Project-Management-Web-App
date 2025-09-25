@@ -48,7 +48,7 @@ function App() {
                 </Route>
                 <Route path="/welcomeboard">
                   {!user && <Welcome />}
-                  {user && <Redirect to="/" />}
+                  {user && <Redirect to="/dashboard" />}
                 </Route>
                 <Route path="/login">
                   {user && <Redirect to="/dashboard" />}
