@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ChatMessage from '../pages/chatmessage/chatMessage'
+import { useAuthContext } from '../hooks/useAuthContext'
 import {
   Box,
   Heading,
@@ -16,19 +17,17 @@ export default function OnlineUsers() {
   const { isPending, error, documents } = useCollection('users');
   const [isOpen, setIsOpen] = useState(false);
 
- const [clicked, setClicked] = useState(false);
- 
-   
- const message ="hello" 
+  const { user } = useAuthContext()
 
-  const handleClick = (message) => {
-      setClicked(prev => !prev);
-     console.log( <ChatMessage />)
-    };
+
+  const [selectedUser, setSelectedUser] = useState(null);
+
+
   return (
     <>
-    {/* <Button onclick={ setClicked() }/> */}
-     {/* <Button onClick= {handleClick }>{clicked ? 'Clicked!' : 'Click me'}</Button> */}
+
+
+
       {/* Toggle Button */}
       <IconButton
         icon={<span>{isOpen ? '🙈' : '👁️'}</span>}
@@ -43,10 +42,10 @@ export default function OnlineUsers() {
         bg="#f77c7c"
         zIndex="1100"
       />
-      
+
       {/* User List Box */}
       {isOpen && (
-       
+
         <Box
           position="fixed"
           bottom={{ base: "70px", md: "80px" }} // slightly above the button, a bit closer on small screens
@@ -77,13 +76,19 @@ export default function OnlineUsers() {
 
           {documents &&
             documents.map((user) => (
+
               <Box
                 key={user.id}
+                
                 display="flex"
                 alignItems="center"
                 justifyContent="flex-end"
                 mb="12px"
+
+                _hover={{ textDecoration: "outline", color: "black" }}
+
               >
+
                 {user.online && (
                   <Box
                     display="inline-block"
@@ -93,19 +98,34 @@ export default function OnlineUsers() {
                     h="12px"
                     bg="#0ebb50"
                     borderRadius="50%"
+                  // onClick={handleClick}
+
                   />
+
                 )}
-                {/* <Button onclick={ setClicked() }> */}
+
+                <Box display="inherit" onClick={() => setSelectedUser(user)}>
                 <Text color="#080808" mr="10px" isTruncated maxW="150px">
                   {user.displayName}
+
                 </Text>
                 <Avatar src={user.photoURL} size="sm" ml="10px" w="40px" h="40px" />
-                {/* </Button> */}
-
+                </Box>
+                  {selectedUser && (
+                    <ChatMessage
+                      message={selectedUser.displayName.split(' ')}
+                      send={selectedUser.displayName}
+                    />
+                  )}
+                
               </Box>
+
             ))}
+
         </Box>
+
       )}
+
     </>
 
   )

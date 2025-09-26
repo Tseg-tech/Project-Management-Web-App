@@ -172,8 +172,9 @@ export default function Navbar() {
               to="/create"
               _hover={{ textDecoration: "none", color: "blue.500" }}
               _focus={{ boxShadow: "none", outline: "none" }}
+              
             >
-              <Flex align="center" gap={2}>
+              <Flex align="center" gap={2} >
                 <Image src={AddIcon} alt="add project icon" boxSize="24px" />
                 <Text
                   borderBottom={isActive("/create", path) ? "2px solid green" : "none"}
